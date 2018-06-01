@@ -1,6 +1,7 @@
 package amtgroup.devinfra.telegram.components.jira.api.rest;
 
 import amtgroup.devinfra.telegram.components.jira.api.rest.dto.JiraIssueEventRequest;
+import amtgroup.devinfra.telegram.util.exception.NotImplementedException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
@@ -20,7 +21,7 @@ public class JiraWebHookController {
     @ApiOperation("")
     @PostMapping("/{projectKey}/{issueKey}")
     public void postIssueEvent(@RequestBody JiraIssueEventRequest request) {
-        // todo
+        throw new NotImplementedException();
     }
 
 }
