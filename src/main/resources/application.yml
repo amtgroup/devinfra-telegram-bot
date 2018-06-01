@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: amtgroup.devinfra.telegram
+  jackson:
+    mapper:
+      DEFAULT_VIEW_INCLUSION: true
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      FAIL_ON_EMPTY_BEANS: false
+    deserialization:
+      ACCEPT_EMPTY_STRING_AS_NULL_OBJECT: true
+      ADJUST_DATES_TO_CONTEXT_TIME_ZONE: false
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+  rabbitmq:
+    dynamic: true
+    template:
+      exchange: telegram_notifications_tx
+    listener:
+      type: direct
+      direct:
+        auto-startup: true
+        acknowledge-mode: auto
+        default-requeue-rejected: true
+        retry:
+          enabled: false
+
+server:
+  port: 80
