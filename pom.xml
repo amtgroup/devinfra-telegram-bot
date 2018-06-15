@@ -36,6 +36,7 @@
         <spring-cloud.version>Finchley.RC1</spring-cloud.version>
 
         <io.springfox.swagger.version>2.7.0</io.springfox.swagger.version>
+        <org.telegram.telegrambots.version>3.6.1</org.telegram.telegrambots.version>
     </properties>
 
     <dependencies>
@@ -99,6 +100,13 @@
                     <artifactId>spring-cloud-netflix-ribbon</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- Telegram Bot -->
+        <dependency>
+            <groupId>org.telegram</groupId>
+            <artifactId>telegrambots-spring-boot-starter</artifactId>
+            <version>${org.telegram.telegrambots.version}</version>
         </dependency>
 
         <!-- Utility Libraries -->
