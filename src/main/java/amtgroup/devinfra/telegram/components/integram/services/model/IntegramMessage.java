@@ -1,4 +1,4 @@
-package amtgroup.devinfra.telegram.components.telegram.services.model;
+package amtgroup.devinfra.telegram.components.integram.services.model;
 
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;

@@ -1,4 +1,4 @@
-package amtgroup.devinfra.telegram.components.telegram.services;
+package amtgroup.devinfra.telegram.components.integram.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

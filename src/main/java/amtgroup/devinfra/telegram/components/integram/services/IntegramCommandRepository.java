@@ -1,7 +1,7 @@
-package amtgroup.devinfra.telegram.components.telegram.services;
+package amtgroup.devinfra.telegram.components.integram.services;
 
-import amtgroup.devinfra.telegram.components.telegram.services.model.ChatId;
-import amtgroup.devinfra.telegram.components.telegram.services.model.IntegramMessage;
+import amtgroup.devinfra.telegram.components.integram.services.model.ChatId;
+import amtgroup.devinfra.telegram.components.integram.services.model.IntegramMessage;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
