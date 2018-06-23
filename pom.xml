@@ -36,6 +36,7 @@
         <spring-cloud.version>Finchley.RC1</spring-cloud.version>
 
         <io.springfox.swagger.version>2.7.0</io.springfox.swagger.version>
+        <net.logstash.logback.version>5.1</net.logstash.logback.version>
         <org.telegram.telegrambots.version>3.6.1</org.telegram.telegrambots.version>
     </properties>
 
@@ -79,6 +80,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
             <exclusions>
                 <exclusion>
@@ -117,6 +122,17 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${io.springfox.swagger.version}</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${net.logstash.logback.version}</version>
         </dependency>
 
         <!-- Testing -->
