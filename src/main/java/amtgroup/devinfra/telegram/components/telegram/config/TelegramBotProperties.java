@@ -30,6 +30,9 @@ public class TelegramBotProperties {
      */
     private Integer maxThreads = 1;
 
+    private long connectionTimeout = 75000;
+    private long requestTimeout = 75000;
+
     /**
      * Настройки HTTP-proxy.
      */
@@ -39,11 +42,25 @@ public class TelegramBotProperties {
     @Data
     public static class HttpProxy {
 
+        /**
+         * Адрес сервера.
+         */
         private String host;
 
+        /**
+         * Порт сервера.
+         */
         private Integer port;
 
-        private String scheme;
+        /**
+         * Имя пользователя для аутентификации.
+         */
+        private String username;
+
+        /**
+         * Пароль.
+         */
+        private String password;
 
     }
 

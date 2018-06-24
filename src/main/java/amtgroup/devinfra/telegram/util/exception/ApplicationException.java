@@ -12,6 +12,7 @@ import java.util.Locale;
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class ApplicationException extends RuntimeException {
+
     private final String code;
     private final Object[] args;
 
@@ -85,4 +86,5 @@ public abstract class ApplicationException extends RuntimeException {
     protected Object[] getLocalizedMessageArguments() {
         return args;
     }
+
 }
