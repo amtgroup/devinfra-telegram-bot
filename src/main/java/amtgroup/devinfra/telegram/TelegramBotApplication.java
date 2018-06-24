@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Vitaly Ogoltsov
  */
 @SpringBootApplication
-public class TelegramApplication {
+public class TelegramBotApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TelegramApplication.class, args);
+        SpringApplication.run(TelegramBotApplication.class, args);
     }
 
 }

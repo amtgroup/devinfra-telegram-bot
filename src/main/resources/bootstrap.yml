@@ -1,3 +1,6 @@
 spring:
   application:
-    name: amtgroup.devinfra.telegram
+    name: amtgroup.devinfra.telegram-bot
+  cloud:
+    config:
+      uri: http://config:8888
