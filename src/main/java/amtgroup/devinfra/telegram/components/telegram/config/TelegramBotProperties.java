@@ -1,6 +1,7 @@
 package amtgroup.devinfra.telegram.components.telegram.config;
 
 import lombok.Data;
+import org.apache.http.client.config.RequestConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.telegram.telegrambots.ApiConstants;
 
@@ -30,8 +31,18 @@ public class TelegramBotProperties {
      */
     private Integer maxThreads = 1;
 
-    private long connectionTimeout = 75000;
-    private long requestTimeout = 75000;
+    /**
+     * Настройка для {@link RequestConfig#getConnectTimeout()} ()}.
+     */
+    private int connectTimeout = 75000;
+    /**
+     * Настройка для {@link RequestConfig#getSocketTimeout()}.
+     */
+    private int socketTimeout = 75000;
+    /**
+     * Настройка для {@link RequestConfig#getConnectionRequestTimeout()} ()}.
+     */
+    private int requestTimeout = 75000;
 
     /**
      * Настройки HTTP-proxy.
@@ -51,6 +62,11 @@ public class TelegramBotProperties {
          * Порт сервера.
          */
         private Integer port;
+
+        /**
+         * Схема для подключения proxy.
+         */
+        private String scheme;
 
         /**
          * Имя пользователя для аутентификации.

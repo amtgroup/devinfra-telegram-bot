@@ -1,32 +1,22 @@
 package amtgroup.devinfra.telegram.components.telegram.config;
 
 import amtgroup.devinfra.telegram.components.telegram.bot.TelegramBot;
-import amtgroup.devinfra.telegram.components.telegram.util.ProxyPlainConnectionSocketFactory;
-import amtgroup.devinfra.telegram.components.telegram.util.ProxySSLConnectionSocketFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.conn.socket.ConnectionSocketFactory;
-import org.apache.http.ssl.SSLContexts;
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.ReflectionUtils;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
-import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 import javax.annotation.PostConstruct;
-import java.lang.reflect.Field;
-import java.net.Authenticator;
-import java.net.InetSocketAddress;
-import java.net.PasswordAuthentication;
-import java.net.Proxy;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * @author Vitaly Ogoltsov
@@ -47,79 +37,70 @@ public class TelegramBotConfiguration {
     }
 
     @Bean
-    public TelegramBot telegramBot(TelegramBotProperties telegramBotProperties) {
+    public DefaultBotOptions defaultBotOptions(TelegramBotProperties telegramBotProperties) {
         DefaultBotOptions defaultBotOptions = new DefaultBotOptions();
+        RequestConfig.Builder requestConfig = RequestConfig.custom()
+                .setConnectTimeout(telegramBotProperties.getConnectTimeout())
+                .setSocketTimeout(telegramBotProperties.getSocketTimeout())
+                .setConnectionRequestTimeout(telegramBotProperties.getRequestTimeout());
         if (telegramBotProperties.getBaseUrl() != null) {
             defaultBotOptions.setBaseUrl(telegramBotProperties.getBaseUrl());
         }
         if (telegramBotProperties.getMaxThreads() != null) {
             defaultBotOptions.setMaxThreads(telegramBotProperties.getMaxThreads());
         }
-        if (telegramBotProperties.getProxy() != null && telegramBotProperties.getProxy().getUsername() != null) {
-            Authenticator.setDefault(new Authenticator() {
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(
-                            telegramBotProperties.getProxy().getUsername(),
-                            Optional.ofNullable(telegramBotProperties.getProxy().getPassword()).orElse("").toCharArray()
-                    );
-                }
-            });
-        }
-        TelegramBot telegramBot = new TelegramBot(
-                defaultBotOptions,
-                telegramBotProperties.getUsername(),
-                telegramBotProperties.getToken()
-        );
         if (telegramBotProperties.getProxy() != null) {
-            InetSocketAddress proxyAddress = new InetSocketAddress(
-                    telegramBotProperties.getProxy().getHost(),
-                    telegramBotProperties.getProxy().getPort()
+            TelegramBotProperties.HttpProxy httpProxyConfiguration = telegramBotProperties.getProxy();
+            defaultBotOptions.setHttpProxy(
+                    new HttpHost(
+                            httpProxyConfiguration.getHost(),
+                            httpProxyConfiguration.getPort(),
+                            httpProxyConfiguration.getScheme()
+                    )
             );
-            configureSocksProxy(telegramBot, new Proxy(Proxy.Type.SOCKS, proxyAddress));
+            if (telegramBotProperties.getProxy().getUsername() != null) {
+                CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+                credentialsProvider.setCredentials(
+                        new AuthScope(httpProxyConfiguration.getHost(), httpProxyConfiguration.getPort(), null, httpProxyConfiguration.getScheme()),
+                        new UsernamePasswordCredentials(httpProxyConfiguration.getUsername(), httpProxyConfiguration.getPassword())
+                );
+                defaultBotOptions.setCredentialsProvider(credentialsProvider);
+                requestConfig = requestConfig
+                        .setProxy(defaultBotOptions.getHttpProxy())
+                        .setAuthenticationEnabled(true);
+            } else {
+                requestConfig = requestConfig
+                        .setProxy(defaultBotOptions.getHttpProxy())
+                        .setAuthenticationEnabled(false);
+            }
         }
-        return telegramBot;
+        defaultBotOptions.setRequestConfig(requestConfig.build());
+        return defaultBotOptions;
     }
 
     @Bean
-    public ApplicationRunner configureTelegramBots(TelegramBotsApi telegramBotsApi,
-                                                   List<TelegramLongPollingBot> longPollingBots) {
+    public TelegramBot telegramBot(TelegramBotProperties telegramBotProperties,
+                                   DefaultBotOptions telegramBotOptions) {
+
+        return new TelegramBot(
+                telegramBotOptions,
+                telegramBotProperties.getUsername(),
+                telegramBotProperties.getToken()
+        );
+    }
+
+    @Bean
+    public ApplicationRunner configureTelegramBots(TelegramBotsApi telegramBotsApi, TelegramBot telegramBot) {
         return args -> {
-            for (TelegramLongPollingBot bot : longPollingBots) {
-                log.info("Регистрация telegram-бота {}", bot.getClass());
-                try {
-                    telegramBotsApi.registerBot(bot);
-                    log.info("Telegram-бот {} зарегистрирован", bot.getClass());
-                } catch (Exception e) {
-                    log.error("Ошибка регистрации telegram-бота {}", bot.getClass(), e);
-                    throw e;
-                }
+            log.info("Регистрация telegram-бота...");
+            try {
+                telegramBotsApi.registerBot(telegramBot);
+            } catch (Exception e) {
+                log.error("Ошибка при регистрации telegram-бота", e);
+                throw e;
             }
+            log.info("Telegram-бот запущен.");
         };
-    }
-
-    private void configureSocksProxy(TelegramBot telegramBot, Proxy proxy) {
-        Map<String, ConnectionSocketFactory> map = getSocketFactoryRegistryMap(telegramBot);
-        map.put("http", new ProxyPlainConnectionSocketFactory(proxy));
-        map.put("https", new ProxySSLConnectionSocketFactory(SSLContexts.createSystemDefault(), proxy));
-    }
-
-    private Map<String, ConnectionSocketFactory> getSocketFactoryRegistryMap(DefaultAbsSender bot) {
-        Object value = bot;
-        for (String name : StringUtils.split("httpclient.connManager.connectionOperator.socketFactoryRegistry.map", '.')) {
-            Field field = ReflectionUtils.findField(value.getClass(), name);
-            if (field == null) {
-                value = null;
-                break;
-            }
-            ReflectionUtils.makeAccessible(field);
-            value = ReflectionUtils.getField(field, value);
-            if (value == null) {
-                break;
-            }
-        }
-        @SuppressWarnings("unchecked")
-        Map<String,ConnectionSocketFactory> socketFactoryRegistryMap = (Map<String, ConnectionSocketFactory>) value;
-        return socketFactoryRegistryMap;
     }
 
 }
