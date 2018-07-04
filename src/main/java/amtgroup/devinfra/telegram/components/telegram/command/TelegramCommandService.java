@@ -45,7 +45,7 @@ public class TelegramCommandService {
                         new SendMessage(
                                 command.getChatId().longValue(),
                                 fragment
-                        ).enableMarkdown(true)
+                        )
                 );
             }
         } catch (Exception e) {
