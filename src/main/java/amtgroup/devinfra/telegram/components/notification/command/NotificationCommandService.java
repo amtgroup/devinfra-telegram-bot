@@ -68,7 +68,7 @@ public class NotificationCommandService {
         // в случае если шаблон "принял решение" не отправлять сообщение
         if (StringUtils.isNotBlank(result.getText())) {
             telegramCommandService.sendMessage(new SendTelegramMessageCommand(
-                    new TelegramChatId(-301249565L), // todo решить как-то задачу подбора идентификатора чата
+                    telegramChatId,
                     result.getText()
             ));
         }
