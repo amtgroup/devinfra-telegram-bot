@@ -59,22 +59,26 @@ public class TelegramCommandService {
     private List<String> split(String text) {
         List<String> results = new ArrayList<>();
         while (text.length() > MESSAGE_LENGTH_LIMIT) {
+            String split = text.substring(0, MESSAGE_LENGTH_LIMIT);
+            // найти последнее вхождение разделителя из списка
             int splitIndex = StringUtils.lastIndexOfAny(
-                    text.substring(0, MESSAGE_LENGTH_LIMIT),
+                    split,
                     " ",
                     ".",
                     ";",
                     ","
             );
-            if (splitIndex < 0) {
-                // во фрагменте не найдено разделителей
-                splitIndex = MESSAGE_LENGTH_LIMIT;
-            } else {
+            if (splitIndex >= 0) {
                 // разделитель попадает в отделяемый фрагмент
-                splitIndex = splitIndex + 1;
+                split = split.substring(0, splitIndex + 1);
             }
-            results.add(text.substring(0, splitIndex));
-            text = text.substring(splitIndex);
+            // отрезать фрагмент из общего сообщения
+            text = text.substring(split.length());
+            // удалить пробелы в начале и конце строки и добавить в результат
+            split = StringUtils.trimToNull(split);
+            if (split !=  null) {
+                results.add(split);
+            }
         }
         results.add(text);
         return results;
