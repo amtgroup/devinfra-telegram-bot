@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 public class TelegramCommandService {
 
-    private static final int MESSAGE_LENGTH_LIMIT = 4096;
+    private static final int MESSAGE_LENGTH_LIMIT = 2048;
 
     private final TelegramBot telegramBot;
 
