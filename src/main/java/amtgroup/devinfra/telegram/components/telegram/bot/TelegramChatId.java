@@ -5,11 +5,13 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
@@ -30,14 +32,14 @@ public final class TelegramChatId implements Serializable {
     public TelegramChatId(Long longValue) {
         Objects.requireNonNull(longValue);
         this.longValue = longValue;
-        this.value = Long.toUnsignedString(longValue, 16);
+        this.value = Base64.encodeBase64String(Long.toString(longValue).getBytes(StandardCharsets.UTF_8));
     }
 
     @JsonCreator
     public TelegramChatId(String value) {
         Objects.requireNonNull(value);
         this.value = value;
-        this.longValue = Long.parseUnsignedLong(value, 16);
+        this.longValue = Long.parseLong(new String(Base64.decodeBase64(this.value), StandardCharsets.UTF_8));
     }
 
 
