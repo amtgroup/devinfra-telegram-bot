@@ -25,7 +25,7 @@ public final class ProjectKey implements Serializable {
     @JsonCreator
     public ProjectKey(String value) {
         Objects.requireNonNull(value);
-        this.value = value;
+        this.value = value.toUpperCase();
     }
 
     @Override
