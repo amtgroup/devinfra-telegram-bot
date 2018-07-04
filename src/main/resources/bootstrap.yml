@@ -1,6 +1,7 @@
 spring:
   application:
-    name: amtgroup.devinfra.telegram-bot
+    name: telegram-bot
   cloud:
     config:
-      uri: http://config:8888
+      enabled: false
+      fail-fast: true
