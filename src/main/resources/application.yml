@@ -21,3 +21,5 @@ spring:
         default-requeue-rejected: true
         retry:
           enabled: false
+  thymeleaf:
+    suffix: .tpl
