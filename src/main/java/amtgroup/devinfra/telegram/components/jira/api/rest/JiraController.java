@@ -30,6 +30,8 @@ public class JiraController {
     private final ServiceKey serviceKey = new ServiceKey("jira");
     private final NotificationCommandService notificationCommandService;
 
+    private final EventTypeId genericEventTypeId = new EventTypeId("jira:generic");
+
 
     @Autowired
     public JiraController(NotificationCommandService notificationCommandService) {
@@ -47,7 +49,7 @@ public class JiraController {
         EventTypeId eventTypeId = Optional.of(event.path("webhookEvent"))
                 .map(JsonNode::textValue)
                 .map(EventTypeId::new)
-                .orElse(null);
+                .orElse(genericEventTypeId);
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
                 projectKey,
