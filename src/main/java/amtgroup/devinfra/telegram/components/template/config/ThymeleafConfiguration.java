@@ -1,5 +1,6 @@
 package amtgroup.devinfra.telegram.components.template.config;
 
+import amtgroup.devinfra.telegram.components.template.engine.MarkdownDialect;
 import amtgroup.devinfra.telegram.components.template.engine.StringUtilsDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,11 @@ public class ThymeleafConfiguration {
     @Bean
     public StringUtilsDialect stringUtilsDialect() {
         return new StringUtilsDialect();
+    }
+
+    @Bean
+    public MarkdownDialect markdownDialect() {
+        return new MarkdownDialect();
     }
 
 }
