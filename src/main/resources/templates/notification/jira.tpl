@@ -1,2 +1,2 @@
 Получено сообщение от Jira:
-[( ${event} )]
+[( ${#markdown.escape(event)} )]

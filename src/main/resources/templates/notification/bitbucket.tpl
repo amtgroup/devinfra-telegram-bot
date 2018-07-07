@@ -1,2 +1,2 @@
 Получено сообщение от BitBucket:
-[( ${event} )]
+[( ${#markdown.escape(event)} )]

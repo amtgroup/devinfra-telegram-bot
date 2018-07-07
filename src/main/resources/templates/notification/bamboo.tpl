@@ -1,2 +1,2 @@
 Получено сообщение от Bamboo:
-[( ${event} )]
+[( ${#markdown.escape(event)} )]
