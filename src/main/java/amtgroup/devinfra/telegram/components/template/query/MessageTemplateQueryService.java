@@ -17,9 +17,13 @@ import org.thymeleaf.templatemode.TemplateMode;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 import static org.thymeleaf.spring5.expression.ThymeleafEvaluationContext.THYMELEAF_EVALUATION_CONTEXT_CONTEXT_VARIABLE_NAME;
 
@@ -55,8 +59,12 @@ public class MessageTemplateQueryService {
             context.setVariable(THYMELEAF_EVALUATION_CONTEXT_CONTEXT_VARIABLE_NAME, evaluationContext);
             // отформатировать данные по шаблону
             String message = templateEngine.process(new TemplateSpec(query.getTemplateId().toString(), TemplateMode.TEXT), context);
-            // убрать лишние пробелы и вернуть результат
-            message = StringUtils.stripToNull(message);
+            // убрать лишние пробелы и пустые строкии
+            message = Arrays.stream(message.split("\n"))
+                    .map(StringUtils::stripToNull)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.joining("\n"));
+            // вернуть результат
             return new FormatMessageQueryResult(
                     message
             );
