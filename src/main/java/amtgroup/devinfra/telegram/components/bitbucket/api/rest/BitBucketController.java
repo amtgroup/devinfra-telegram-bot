@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.Optional;
 
@@ -43,10 +44,18 @@ public class BitBucketController {
     public void handle(@RequestBody JsonNode event,
                        @RequestHeader("X-Event-Key") EventTypeId eventTypeId) {
 
-        ProjectKey projectKey = Optional.of(event.path("repository").path("project").path("key"))
-                .map(JsonNode::textValue)
-                .map(ProjectKey::new)
-                .orElse(null);
+        ProjectKey projectKey = null;
+        if (StringUtils.startsWith(eventTypeId.toString(), "repo:")) {
+            projectKey = Optional.of(event.path("repository").path("project").path("key"))
+                    .map(JsonNode::textValue)
+                    .map(ProjectKey::new)
+                    .orElse(null);
+        } else if (StringUtils.startsWith(eventTypeId.toString(), "pr:")) {
+            projectKey = Optional.of(event.path("pullRequest").path("toRef").path("project").path("key"))
+                    .map(JsonNode::textValue)
+                    .map(ProjectKey::new)
+                    .orElse(null);
+        }
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
                 projectKey,
