@@ -28,7 +28,7 @@ public class Markdown {
     public String bold(Object value) {
         String s = escape(value);
         if (s != null) {
-            s = "**" + s + "**";
+            s = "*" + s + "*";
         }
         return s;
     }
@@ -39,7 +39,7 @@ public class Markdown {
     public String italic(Object value) {
         String s = escape(value);
         if (s != null) {
-            s = "__" + s + "__";
+            s = "_" + s + "_";
         }
         return s;
     }
