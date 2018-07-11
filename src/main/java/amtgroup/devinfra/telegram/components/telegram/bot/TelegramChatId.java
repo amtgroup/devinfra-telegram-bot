@@ -21,6 +21,15 @@ import java.util.Objects;
 @EqualsAndHashCode
 public final class TelegramChatId implements Serializable {
 
+    public static TelegramChatId of(String value) {
+        return new TelegramChatId(value);
+    }
+
+    public static TelegramChatId of(Long longValue) {
+        return new TelegramChatId(longValue);
+    }
+
+
     @NotBlank
     @Size(max = 100)
     private String value;

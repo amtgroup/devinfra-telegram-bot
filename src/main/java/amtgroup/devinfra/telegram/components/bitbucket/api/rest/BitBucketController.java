@@ -29,7 +29,7 @@ import java.util.Optional;
 @Slf4j
 public class BitBucketController {
 
-    private final ServiceKey serviceKey = new ServiceKey("bitbucket");
+    private final ServiceKey serviceKey = ServiceKey.of("bitbucket");
     private final NotificationCommandService notificationCommandService;
 
 
@@ -48,12 +48,12 @@ public class BitBucketController {
         if (StringUtils.startsWith(eventTypeId.toString(), "repo:")) {
             projectKey = Optional.of(event.path("repository").path("project").path("key"))
                     .map(JsonNode::textValue)
-                    .map(ProjectKey::new)
+                    .map(ProjectKey::of)
                     .orElse(null);
         } else if (StringUtils.startsWith(eventTypeId.toString(), "pr:")) {
             projectKey = Optional.of(event.path("pullRequest").path("toRef").path("project").path("key"))
                     .map(JsonNode::textValue)
-                    .map(ProjectKey::new)
+                    .map(ProjectKey::of)
                     .orElse(null);
         }
         notificationCommandService.handle(new SendNotificationCommand(

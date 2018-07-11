@@ -61,7 +61,7 @@ public class NotificationCommandService {
         variables.put("eventTypeId", command.getEventTypeId().toString());
         variables.put("event", command.getEvent());
         FormatMessageQueryResult result = messageTemplateQueryService.formatMessage(new FormatMessageQuery(
-                new MessageTemplateId("notification/" + command.getServiceKey()),
+                MessageTemplateId.of("notification/" + command.getServiceKey()),
                 variables
         ));
         // шаблонизатор может вернуть пустой текст или null,

@@ -27,10 +27,10 @@ import java.util.Optional;
 @Slf4j
 public class JiraController {
 
-    private final ServiceKey serviceKey = new ServiceKey("jira");
+    private final ServiceKey serviceKey = ServiceKey.of("jira");
     private final NotificationCommandService notificationCommandService;
 
-    private final EventTypeId genericEventTypeId = new EventTypeId("jira:generic");
+    private final EventTypeId genericEventTypeId = EventTypeId.of("jira:generic");
 
 
     @Autowired
@@ -44,11 +44,11 @@ public class JiraController {
     public void handle(@RequestBody JsonNode event) {
         ProjectKey projectKey = Optional.of(event.path("issue").path("fields").path("project").path("key"))
                 .map(JsonNode::textValue)
-                .map(ProjectKey::new)
+                .map(ProjectKey::of)
                 .orElse(null);
         EventTypeId eventTypeId = Optional.of(event.path("webhookEvent"))
                 .map(JsonNode::textValue)
-                .map(EventTypeId::new)
+                .map(EventTypeId::of)
                 .orElse(genericEventTypeId);
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,

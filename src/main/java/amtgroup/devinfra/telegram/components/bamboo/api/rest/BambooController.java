@@ -27,7 +27,7 @@ import java.util.Optional;
 @Slf4j
 public class BambooController {
 
-    private final ServiceKey serviceKey = new ServiceKey("bamboo");
+    private final ServiceKey serviceKey = ServiceKey.of("bamboo");
     private final NotificationCommandService notificationCommandService;
 
 
@@ -42,11 +42,11 @@ public class BambooController {
     public void handle(@RequestBody JsonNode event) {
         ProjectKey projectKey = Optional.of(event.path("issue").path("fields").path("project").path("key"))
                 .map(JsonNode::textValue)
-                .map(ProjectKey::new)
+                .map(ProjectKey::of)
                 .orElse(null);
         EventTypeId eventTypeId = Optional.of(event.path("webhookEvent"))
                 .map(JsonNode::textValue)
-                .map(EventTypeId::new)
+                .map(EventTypeId::of)
                 .orElse(null);
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
