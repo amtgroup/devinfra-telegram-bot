@@ -13,8 +13,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.ProxyAuthenticationStrategy;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
-import org.telegram.telegrambots.facilities.ProxyPlainConnectionSocketFactory;
-import org.telegram.telegrambots.facilities.ProxySSLConnectionSocketFactory;
 
 import javax.net.ssl.SSLContext;
 import java.net.Authenticator;

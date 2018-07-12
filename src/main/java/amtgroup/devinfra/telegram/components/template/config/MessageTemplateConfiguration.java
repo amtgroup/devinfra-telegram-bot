@@ -1,9 +1,9 @@
 package amtgroup.devinfra.telegram.components.template.config;
 
-import amtgroup.devinfra.telegram.components.template.engine.MarkdownDialect;
-import amtgroup.devinfra.telegram.components.template.engine.StringUtilsDialect;
+import amtgroup.devinfra.telegram.components.template.query.MessageTemplateQueryService;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration;
+import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
+import org.springframework.boot.autoconfigure.freemarker.FreeMarkerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,17 +11,17 @@ import org.springframework.context.annotation.Configuration;
  * @author Vitaly Ogoltsov
  */
 @Configuration
-@ImportAutoConfiguration(ThymeleafAutoConfiguration.class)
+@ImportAutoConfiguration(FreeMarkerAutoConfiguration.class)
 public class MessageTemplateConfiguration {
 
     @Bean
-    public StringUtilsDialect stringUtilsDialect() {
-        return new StringUtilsDialect();
-    }
+    public MessageTemplateQueryService messageTemplateQueryService(freemarker.template.Configuration freemarker,
+                                                                   FreeMarkerProperties freemarkerProperties) {
 
-    @Bean
-    public MarkdownDialect markdownDialect() {
-        return new MarkdownDialect();
+        return new MessageTemplateQueryService(
+                freemarker,
+                freemarkerProperties.getSuffix()
+        );
     }
-
+    
 }

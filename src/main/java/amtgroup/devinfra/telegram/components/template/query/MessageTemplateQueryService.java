@@ -3,44 +3,32 @@ package amtgroup.devinfra.telegram.components.template.query;
 import amtgroup.devinfra.telegram.components.template.exception.MessageTemplateFormatException;
 import amtgroup.devinfra.telegram.components.template.query.dto.FormatMessageQuery;
 import amtgroup.devinfra.telegram.components.template.query.dto.FormatMessageQueryResult;
-import amtgroup.devinfra.telegram.components.template.engine.MessageTemplateJsonPropertyAccessor;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.PropertyAccessor;
-import org.springframework.expression.spel.support.StandardEvaluationContext;
-import org.springframework.stereotype.Component;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.TemplateSpec;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.templatemode.TemplateMode;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
+import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
-
-import static org.thymeleaf.spring5.expression.ThymeleafEvaluationContext.THYMELEAF_EVALUATION_CONTEXT_CONTEXT_VARIABLE_NAME;
 
 /**
  * @author Vitaly Ogoltsov
  */
-@Component
 public class MessageTemplateQueryService {
 
-    private final TemplateEngine templateEngine;
-    private final List<PropertyAccessor> propertyAccessors;
+    private final Configuration freemarker;
+
+    private final String suffix;
 
 
-    @Autowired
-    public MessageTemplateQueryService(TemplateEngine templateEngine) {
-        this.templateEngine = templateEngine;
-        this.propertyAccessors = Collections.singletonList(new MessageTemplateJsonPropertyAccessor());
+    public MessageTemplateQueryService(Configuration freemarker, String suffix) {
+        Objects.requireNonNull(freemarker);
+        Objects.requireNonNull(suffix);
+        this.freemarker = freemarker;
+        this.suffix = suffix;
     }
 
 
@@ -49,16 +37,12 @@ public class MessageTemplateQueryService {
      */
     public FormatMessageQueryResult formatMessage(@NotNull @Valid FormatMessageQuery query) {
         try {
-            Context context = new Context(
-                    Locale.getDefault(),
-                    query.getContext()
-            );
-            // настройка evaluation context позволяет обращаться к полям JsonNode через "." вместо использования API-методов
-            StandardEvaluationContext evaluationContext = new StandardEvaluationContext();
-            evaluationContext.setPropertyAccessors(new ArrayList<>(this.propertyAccessors));
-            context.setVariable(THYMELEAF_EVALUATION_CONTEXT_CONTEXT_VARIABLE_NAME, evaluationContext);
-            // отформатировать данные по шаблону
-            String message = templateEngine.process(new TemplateSpec(query.getTemplateId().toString(), TemplateMode.TEXT), context);
+            // получить шаблон
+            Template template = freemarker.getTemplate(query.getTemplateId().toString() + suffix);
+            // отформатировать сообщение по шаблону
+            StringWriter writer = new StringWriter();
+            template.process(query.getContext(), writer);
+            String message = writer.toString();
             // убрать лишние пробелы и пустые строкии
             message = Arrays.stream(message.split("\n"))
                     .map(StringUtils::stripToNull)

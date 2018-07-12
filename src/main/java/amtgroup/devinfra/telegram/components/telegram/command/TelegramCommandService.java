@@ -76,7 +76,7 @@ public class TelegramCommandService {
             text = text.substring(split.length());
             // удалить пробелы в начале и конце строки и добавить в результат
             split = StringUtils.trimToNull(split);
-            if (split !=  null) {
+            if (split != null) {
                 results.add(split);
             }
         }

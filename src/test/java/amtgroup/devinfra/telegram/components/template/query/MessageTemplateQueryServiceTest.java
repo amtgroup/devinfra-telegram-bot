@@ -1,10 +1,10 @@
 package amtgroup.devinfra.telegram.components.template.query;
 
+import amtgroup.devinfra.telegram.components.template.config.MessageTemplateConfiguration;
 import amtgroup.devinfra.telegram.components.template.exception.MessageTemplateFormatException;
 import amtgroup.devinfra.telegram.components.template.model.MessageTemplateId;
 import amtgroup.devinfra.telegram.components.template.query.dto.FormatMessageQuery;
 import amtgroup.devinfra.telegram.components.template.query.dto.FormatMessageQueryResult;
-import amtgroup.devinfra.telegram.config.MessageTemplateTestConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
-        classes = MessageTemplateTestConfiguration.class,
+        classes = MessageTemplateConfiguration.class,
         initializers = ConfigFileApplicationContextInitializer.class
 )
 public class MessageTemplateQueryServiceTest {
