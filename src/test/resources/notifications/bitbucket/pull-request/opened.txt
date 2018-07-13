@@ -1,2 +1,1 @@
-:new: [amtgroup.devinfra.test #1: test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test/pull-requests/1/overview)
-*Author*: Vitaliy Ogoltsov
+:new: *Vitaliy Ogoltsov* opened [amtgroup.devinfra.test #1: test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test/pull-requests/1/overview)

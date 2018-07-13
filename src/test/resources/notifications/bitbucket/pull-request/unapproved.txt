@@ -1,2 +1,1 @@
-:wave: [amtgroup.infodiode.v1 #65: feat(core): Выполнено переименование полей настроек FTP](https://git.example.com/projects/INFODIODE/repos/amtgroup.infodiode.v1/pull-requests/65/overview)
-*Author*: Kirill Naumov
+:wave: *Vitaliy Ogoltsov* un-approved [amtgroup.infodiode.v1 #65: feat(core): Выполнено переименование полей настроек FTP](https://git.example.com/projects/INFODIODE/repos/amtgroup.infodiode.v1/pull-requests/65/overview)
