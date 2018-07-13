@@ -1,1 +1,1 @@
-:up: *Vitaliy Ogoltsov* :arrow_right: [amtgroup.devinfra.test:test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test/browse?at=refs%2Fheads%2Ftest)
+:arrow_right: *Vitaliy Ogoltsov* pushed changes to [amtgroup.devinfra.test:test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test/browse?at=refs%2Fheads%2Ftest)
