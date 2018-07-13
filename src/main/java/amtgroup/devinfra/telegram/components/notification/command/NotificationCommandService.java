@@ -1,7 +1,7 @@
 package amtgroup.devinfra.telegram.components.notification.command;
 
 import amtgroup.devinfra.telegram.components.notification.command.dto.SendNotificationCommand;
-import amtgroup.devinfra.telegram.components.project.query.ProjectQueryService;
+import amtgroup.devinfra.telegram.components.project.query.ProjectCatalogQueryService;
 import amtgroup.devinfra.telegram.components.project.query.dto.FindTelegramChatIdByProjectKeyQuery;
 import amtgroup.devinfra.telegram.components.telegram.bot.TelegramChatId;
 import amtgroup.devinfra.telegram.components.telegram.command.TelegramCommandService;
@@ -28,16 +28,16 @@ import java.util.Map;
 @Slf4j
 public class NotificationCommandService {
 
-    private final ProjectQueryService projectQueryService;
+    private final ProjectCatalogQueryService projectCatalogQueryService;
     private final MessageTemplateQueryService messageTemplateQueryService;
     private final TelegramCommandService telegramCommandService;
 
 
-    public NotificationCommandService(ProjectQueryService projectQueryService,
+    public NotificationCommandService(ProjectCatalogQueryService projectCatalogQueryService,
                                       MessageTemplateQueryService messageTemplateQueryService,
                                       TelegramCommandService telegramCommandService) {
 
-        this.projectQueryService = projectQueryService;
+        this.projectCatalogQueryService = projectCatalogQueryService;
         this.messageTemplateQueryService = messageTemplateQueryService;
         this.telegramCommandService = telegramCommandService;
     }
@@ -47,7 +47,7 @@ public class NotificationCommandService {
      * Отправить уведомление по проекту.
      */
     public void handle(@NotNull @Valid SendNotificationCommand command) {
-        TelegramChatId telegramChatId = projectQueryService.handle(new FindTelegramChatIdByProjectKeyQuery(
+        TelegramChatId telegramChatId = projectCatalogQueryService.handle(new FindTelegramChatIdByProjectKeyQuery(
                 command.getProjectKey()
         )).getTelegramChatId();
         if (telegramChatId == null) {
@@ -55,14 +55,9 @@ public class NotificationCommandService {
             return;
         }
         // отформатировать сообщение по шаблону
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("serviceKey", command.getServiceKey().toString());
-        variables.put("projectKey", command.getProjectKey().toString());
-        variables.put("eventTypeId", command.getEventTypeId().toString());
-        variables.put("event", command.getEvent());
         FormatMessageQueryResult result = messageTemplateQueryService.formatMessage(new FormatMessageQuery(
-                MessageTemplateId.of("notification/" + command.getServiceKey()),
-                variables
+                MessageTemplateId.of("notifications/" + command.getServiceKey() + "/" + command.getEventTypeId()),
+                command.getVariables()
         ));
         // шаблонизатор может вернуть пустой текст или null,
         // в случае если шаблон "принял решение" не отправлять сообщение

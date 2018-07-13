@@ -1,0 +1,2 @@
+:new: :stars: [DEVINFRA-20: test2](https://jira.example.com/browse/DEVINFRA-20)
+*Reporter*: Vitaliy Ogoltsov

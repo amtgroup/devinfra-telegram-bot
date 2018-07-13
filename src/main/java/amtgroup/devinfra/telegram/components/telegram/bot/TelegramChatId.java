@@ -21,6 +21,7 @@ import java.util.Objects;
 @EqualsAndHashCode
 public final class TelegramChatId implements Serializable {
 
+    @JsonCreator
     public static TelegramChatId of(String value) {
         return new TelegramChatId(value);
     }
@@ -38,14 +39,13 @@ public final class TelegramChatId implements Serializable {
     private Long longValue;
 
 
-    public TelegramChatId(Long longValue) {
+    private TelegramChatId(Long longValue) {
         Objects.requireNonNull(longValue);
         this.longValue = longValue;
         this.value = Base64.encodeBase64String(Long.toString(longValue).getBytes(StandardCharsets.UTF_8));
     }
 
-    @JsonCreator
-    public TelegramChatId(String value) {
+    private TelegramChatId(String value) {
         Objects.requireNonNull(value);
         this.value = value;
         this.longValue = Long.parseLong(new String(Base64.decodeBase64(this.value), StandardCharsets.UTF_8));

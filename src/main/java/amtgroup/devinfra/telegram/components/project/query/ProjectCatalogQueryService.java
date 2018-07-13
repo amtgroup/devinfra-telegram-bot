@@ -17,13 +17,13 @@ import javax.validation.constraints.NotNull;
 @Service
 @Validated
 @Slf4j
-public class ProjectQueryService {
+public class ProjectCatalogQueryService {
 
-    private final ProjectQueryRepository repository;
+    private final ProjectCatalogQueryRepository repository;
 
 
     @Autowired
-    public ProjectQueryService(ProjectQueryRepository repository) {
+    public ProjectCatalogQueryService(ProjectCatalogQueryRepository repository) {
         this.repository = repository;
     }
 

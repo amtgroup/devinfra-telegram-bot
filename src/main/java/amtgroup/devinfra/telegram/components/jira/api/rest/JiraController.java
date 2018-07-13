@@ -1,10 +1,7 @@
 package amtgroup.devinfra.telegram.components.jira.api.rest;
 
-import amtgroup.devinfra.telegram.components.notification.command.NotificationCommandService;
-import amtgroup.devinfra.telegram.components.notification.command.dto.SendNotificationCommand;
-import amtgroup.devinfra.telegram.components.notification.model.EventTypeId;
-import amtgroup.devinfra.telegram.components.project.model.ProjectKey;
-import amtgroup.devinfra.telegram.components.project.model.ServiceKey;
+import amtgroup.devinfra.telegram.components.jira.command.JiraWebhookCommandService;
+import amtgroup.devinfra.telegram.components.jira.command.dto.HandleJiraWebhookEventCommand;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
-
 /**
  * @author Vitaly Ogoltsov
  */
@@ -27,33 +22,19 @@ import java.util.Optional;
 @Slf4j
 public class JiraController {
 
-    private final ServiceKey serviceKey = ServiceKey.of("jira");
-    private final NotificationCommandService notificationCommandService;
-
-    private final EventTypeId genericEventTypeId = EventTypeId.of("jira:generic");
+    private final JiraWebhookCommandService jiraWebhookCommandService;
 
 
     @Autowired
-    public JiraController(NotificationCommandService notificationCommandService) {
-        this.notificationCommandService = notificationCommandService;
+    public JiraController(JiraWebhookCommandService jiraWebhookCommandService) {
+        this.jiraWebhookCommandService = jiraWebhookCommandService;
     }
 
 
     @ApiOperation("WebHook-уведомления от JIRA")
     @PostMapping("/web-hook")
     public void handle(@RequestBody JsonNode event) {
-        ProjectKey projectKey = Optional.of(event.path("issue").path("fields").path("project").path("key"))
-                .map(JsonNode::textValue)
-                .map(ProjectKey::of)
-                .orElse(null);
-        EventTypeId eventTypeId = Optional.of(event.path("webhookEvent"))
-                .map(JsonNode::textValue)
-                .map(EventTypeId::of)
-                .orElse(genericEventTypeId);
-        notificationCommandService.handle(new SendNotificationCommand(
-                serviceKey,
-                projectKey,
-                eventTypeId,
+        jiraWebhookCommandService.handle(new HandleJiraWebhookEventCommand(
                 event
         ));
     }

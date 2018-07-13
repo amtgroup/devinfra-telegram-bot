@@ -1,0 +1,3 @@
+spring:
+  freemarker:
+    template-loader-path: ['../test-classes/templates/', '../classes/templates/']

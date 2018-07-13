@@ -1,0 +1,3 @@
+:red_circle: [TEST-1: test1](https://jira.example.com/browse/TEST-1)
+*Status*: ToDo :arrow_right: In Progress
+*Actor*: Vitaliy Ogoltsov

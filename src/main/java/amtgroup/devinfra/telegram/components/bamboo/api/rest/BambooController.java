@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.Optional;
 
 /**
@@ -52,7 +53,7 @@ public class BambooController {
                 serviceKey,
                 projectKey,
                 eventTypeId,
-                event
+                Collections.singletonMap("event", event)
         ));
     }
 

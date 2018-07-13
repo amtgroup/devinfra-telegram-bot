@@ -1,6 +1,6 @@
 spring:
-  thymeleaf:
-    prefix: file://${user.dir}/src/main/resources/templates/
+  freemarker:
+    template-loader-path: ['file://${user.dir}/src/main/resources/templates/']
     cache: false
 
 telegram:
@@ -13,3 +13,7 @@ telegram:
       scheme: socks5
       username: freetelegram.org
       password: freetelegram.org
+
+projects:
+  test:
+    telegram-chat-id: 'LTMwMTI0OTU2NQ=='

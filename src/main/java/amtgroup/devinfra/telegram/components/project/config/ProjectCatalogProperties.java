@@ -13,7 +13,7 @@ import java.util.Map;
  */
 @ConfigurationProperties
 @Data
-public class ProjectsProperties {
+public class ProjectCatalogProperties {
 
     private Map<ProjectKey, Project> projects = new HashMap<>();
 

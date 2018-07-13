@@ -1,0 +1,240 @@
+{
+  "timestamp": 1531216199554,
+  "webhookEvent": "jira:issue_updated",
+  "issue_event_type_name": "issue_work_started",
+  "user": {
+    "self": "https://jira.example.com/rest/api/2/user?username=vogoltsov",
+    "name": "vogoltsov",
+    "key": "vogoltsov",
+    "emailAddress": "vogoltsov@example.com",
+    "avatarUrls": {
+      "48x48": "https://jira.example.com/secure/useravatar?ownerId=vogoltsov&avatarId=14302",
+      "24x24": "https://jira.example.com/secure/useravatar?size=small&ownerId=vogoltsov&avatarId=14302",
+      "16x16": "https://jira.example.com/secure/useravatar?size=xsmall&ownerId=vogoltsov&avatarId=14302",
+      "32x32": "https://jira.example.com/secure/useravatar?size=medium&ownerId=vogoltsov&avatarId=14302"
+    },
+    "displayName": "Vitaliy Ogoltsov",
+    "active": true,
+    "timeZone": "GMT"
+  },
+  "issue": {
+    "id": "36940",
+    "self": "https://jira.example.com/rest/api/2/issue/36940",
+    "key": "TEST-1",
+    "fields": {
+      "issuetype": {
+        "self": "https://jira.example.com/rest/api/2/issuetype/1",
+        "id": "1",
+        "description": "A problem which impairs or prevents the functions of the product.",
+        "iconUrl": "https://jira.example.com/secure/viewavatar?size=xsmall&avatarId=12403&avatarType=issuetype",
+        "name": "Bug",
+        "subtask": false,
+        "avatarId": 12403
+      },
+      "timespent": null,
+      "project": {
+        "self": "https://jira.example.com/rest/api/2/project/14600",
+        "id": "14600",
+        "key": "TEST",
+        "name": "Тестовый проект",
+        "avatarUrls": {
+          "48x48": "https://jira.example.com/secure/projectavatar?avatarId=13003",
+          "24x24": "https://jira.example.com/secure/projectavatar?size=small&avatarId=13003",
+          "16x16": "https://jira.example.com/secure/projectavatar?size=xsmall&avatarId=13003",
+          "32x32": "https://jira.example.com/secure/projectavatar?size=medium&avatarId=13003"
+        },
+        "projectCategory": {
+          "self": "https://jira.example.com/rest/api/2/projectCategory/10400",
+          "id": "10400",
+          "description": "",
+          "name": "Инвестиционные"
+        }
+      },
+      "customfield_11000": "9223372036854775807",
+      "fixVersions": [],
+      "customfield_11001": null,
+      "aggregatetimespent": null,
+      "resolution": null,
+      "customfield_11400": null,
+      "customfield_10500": null,
+      "customfield_12206": null,
+      "customfield_10501": null,
+      "customfield_12205": null,
+      "customfield_10502": null,
+      "customfield_10700": "9223372036854775807",
+      "customfield_12208": null,
+      "customfield_12207": null,
+      "resolutiondate": null,
+      "workratio": -1,
+      "lastViewed": "2018-07-10T09:49:59.536+0000",
+      "watches": {
+        "self": "https://jira.example.com/rest/api/2/issue/TEST-1/watchers",
+        "watchCount": 1,
+        "isWatching": true
+      },
+      "created": "2018-07-10T09:40:12.661+0000",
+      "customfield_12200": null,
+      "priority": {
+        "self": "https://jira.example.com/rest/api/2/priority/3",
+        "iconUrl": "https://jira.example.com/images/icons/priorities/major.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "customfield_12202": null,
+      "customfield_12201": [],
+      "customfield_12204": null,
+      "labels": [],
+      "customfield_12203": null,
+      "customfield_11700": "0|zo01zs:",
+      "timeestimate": null,
+      "aggregatetimeoriginalestimate": null,
+      "versions": [
+        {
+          "self": "https://jira.example.com/rest/api/2/version/16406",
+          "id": "16406",
+          "description": "",
+          "name": "1.0.0",
+          "archived": false,
+          "released": false
+        }
+      ],
+      "issuelinks": [],
+      "assignee": {
+        "self": "https://jira.example.com/rest/api/2/user?username=vogoltsov",
+        "name": "vogoltsov",
+        "key": "vogoltsov",
+        "emailAddress": "vogoltsov@example.com",
+        "avatarUrls": {
+          "48x48": "https://jira.example.com/secure/useravatar?ownerId=vogoltsov&avatarId=14302",
+          "24x24": "https://jira.example.com/secure/useravatar?size=small&ownerId=vogoltsov&avatarId=14302",
+          "16x16": "https://jira.example.com/secure/useravatar?size=xsmall&ownerId=vogoltsov&avatarId=14302",
+          "32x32": "https://jira.example.com/secure/useravatar?size=medium&ownerId=vogoltsov&avatarId=14302"
+        },
+        "displayName": "Vitaliy Ogoltsov",
+        "active": true,
+        "timeZone": "GMT"
+      },
+      "updated": "2018-07-10T09:49:59.552+0000",
+      "status": {
+        "self": "https://jira.example.com/rest/api/2/status/3",
+        "description": "This issue is being actively worked on at the moment by the assignee.",
+        "iconUrl": "https://jira.example.com/images/icons/statuses/inprogress.png",
+        "name": "In Progress",
+        "id": "3",
+        "statusCategory": {
+          "self": "https://jira.example.com/rest/api/2/statuscategory/4",
+          "id": 4,
+          "key": "indeterminate",
+          "colorName": "yellow",
+          "name": "InProgress"
+        }
+      },
+      "components": [],
+      "timeoriginalestimate": null,
+      "description": null,
+      "customfield_11100": null,
+      "customfield_11300": null,
+      "customfield_11500": null,
+      "timetracking": {},
+      "customfield_10600": "1",
+      "customfield_10602": [
+        {
+          "self": "https://jira.example.com/rest/api/2/customFieldOption/10303",
+          "value": "Test",
+          "id": "10303"
+        }
+      ],
+      "attachment": [],
+      "aggregatetimeestimate": null,
+      "customfield_10604": null,
+      "summary": "test1",
+      "creator": {
+        "self": "https://jira.example.com/rest/api/2/user?username=vogoltsov",
+        "name": "vogoltsov",
+        "key": "vogoltsov",
+        "emailAddress": "vogoltsov@example.com",
+        "avatarUrls": {
+          "48x48": "https://jira.example.com/secure/useravatar?ownerId=vogoltsov&avatarId=14302",
+          "24x24": "https://jira.example.com/secure/useravatar?size=small&ownerId=vogoltsov&avatarId=14302",
+          "16x16": "https://jira.example.com/secure/useravatar?size=xsmall&ownerId=vogoltsov&avatarId=14302",
+          "32x32": "https://jira.example.com/secure/useravatar?size=medium&ownerId=vogoltsov&avatarId=14302"
+        },
+        "displayName": "Vitaliy Ogoltsov",
+        "active": true,
+        "timeZone": "GMT"
+      },
+      "subtasks": [],
+      "reporter": {
+        "self": "https://jira.example.com/rest/api/2/user?username=vogoltsov",
+        "name": "vogoltsov",
+        "key": "vogoltsov",
+        "emailAddress": "vogoltsov@example.com",
+        "avatarUrls": {
+          "48x48": "https://jira.example.com/secure/useravatar?ownerId=vogoltsov&avatarId=14302",
+          "24x24": "https://jira.example.com/secure/useravatar?size=small&ownerId=vogoltsov&avatarId=14302",
+          "16x16": "https://jira.example.com/secure/useravatar?size=xsmall&ownerId=vogoltsov&avatarId=14302",
+          "32x32": "https://jira.example.com/secure/useravatar?size=medium&ownerId=vogoltsov&avatarId=14302"
+        },
+        "displayName": "Vitaliy Ogoltsov",
+        "active": true,
+        "timeZone": "GMT"
+      },
+      "customfield_12100": "{summaryBean=com.atlassian.jira.plugin.devstatus.rest.SummaryBean@17b47918[summary={pullrequest=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@1bee3106[overall=com.atlassian.jira.plugin.devstatus.summary.beans.PullRequestOverallBean@62a7d653[stateCount=0,state=OPEN,count=0,lastUpdated=<null>,lastUpdatedTimestamp=<null>],byInstanceType={}], build=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@31bd0716[overall=com.atlassian.jira.plugin.devstatus.summary.beans.BuildOverallBean@5f5d480[failedBuildCount=0,successfulBuildCount=0,unknownBuildCount=0,count=0,lastUpdated=<null>,lastUpdatedTimestamp=<null>],byInstanceType={}], review=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@6f79a339[overall=com.atlassian.jira.plugin.devstatus.summary.beans.ReviewsOverallBean@33b0f5cb[stateCount=0,state=<null>,dueDate=<null>,overDue=false,count=0,lastUpdated=<null>,lastUpdatedTimestamp=<null>],byInstanceType={}], deployment-environment=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@6a6cd11c[overall=com.atlassian.jira.plugin.devstatus.summary.beans.DeploymentOverallBean@41164905[topEnvironments=[],showProjects=false,successfulCount=0,count=0,lastUpdated=<null>,lastUpdatedTimestamp=<null>],byInstanceType={}], repository=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@63d45a75[overall=com.atlassian.jira.plugin.devstatus.summary.beans.CommitOverallBean@57fee569[count=0,lastUpdated=<null>,lastUpdatedTimestamp=<null>],byInstanceType={}], branch=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@5b963abb[overall=com.atlassian.jira.plugin.devstatus.summary.beans.BranchOverallBean@28bb1ead[count=0,lastUpdated=<null>,lastUpdatedTimestamp=<null>],byInstanceType={}]},errors=[],configErrors=[]], devSummaryJson={\"cachedValue\":{\"errors\":[],\"configErrors\":[],\"summary\":{\"pullrequest\":{\"overall\":{\"count\":0,\"lastUpdated\":null,\"stateCount\":0,\"state\":\"OPEN\",\"open\":true},\"byInstanceType\":{}},\"build\":{\"overall\":{\"count\":0,\"lastUpdated\":null,\"failedBuildCount\":0,\"successfulBuildCount\":0,\"unknownBuildCount\":0},\"byInstanceType\":{}},\"review\":{\"overall\":{\"count\":0,\"lastUpdated\":null,\"stateCount\":0,\"state\":null,\"dueDate\":null,\"overDue\":false,\"completed\":false},\"byInstanceType\":{}},\"deployment-environment\":{\"overall\":{\"count\":0,\"lastUpdated\":null,\"topEnvironments\":[],\"showProjects\":false,\"successfulCount\":0},\"byInstanceType\":{}},\"repository\":{\"overall\":{\"count\":0,\"lastUpdated\":null},\"byInstanceType\":{}},\"branch\":{\"overall\":{\"count\":0,\"lastUpdated\":null},\"byInstanceType\":{}}}},\"isStale\":false}}",
+      "aggregateprogress": {
+        "progress": 0,
+        "total": 0
+      },
+      "customfield_10400": {
+        "self": "https://jira.example.com/rest/api/2/user?username=vogoltsov",
+        "name": "vogoltsov",
+        "key": "vogoltsov",
+        "emailAddress": "vogoltsov@example.com",
+        "avatarUrls": {
+          "48x48": "https://jira.example.com/secure/useravatar?ownerId=vogoltsov&avatarId=14302",
+          "24x24": "https://jira.example.com/secure/useravatar?size=small&ownerId=vogoltsov&avatarId=14302",
+          "16x16": "https://jira.example.com/secure/useravatar?size=xsmall&ownerId=vogoltsov&avatarId=14302",
+          "32x32": "https://jira.example.com/secure/useravatar?size=medium&ownerId=vogoltsov&avatarId=14302"
+        },
+        "displayName": "Vitaliy Ogoltsov",
+        "active": true,
+        "timeZone": "GMT"
+      },
+      "environment": null,
+      "customfield_11801": null,
+      "customfield_11800": null,
+      "duedate": null,
+      "customfield_11805": null,
+      "customfield_11804": null,
+      "customfield_11806": null,
+      "progress": {
+        "progress": 0,
+        "total": 0
+      },
+      "comment": {
+        "comments": [],
+        "maxResults": 0,
+        "total": 0,
+        "startAt": 0
+      },
+      "worklog": {
+        "startAt": 0,
+        "maxResults": 20,
+        "total": 0,
+        "worklogs": []
+      }
+    }
+  },
+  "changelog": {
+    "id": "286759",
+    "items": [
+      {
+        "field": "status",
+        "fieldtype": "jira",
+        "from": "10007",
+        "fromString": "ToDo",
+        "to": "3",
+        "toString": "In Progress"
+      }
+    ]
+  }
+}

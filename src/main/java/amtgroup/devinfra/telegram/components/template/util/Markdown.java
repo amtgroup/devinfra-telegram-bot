@@ -1,5 +1,7 @@
 package amtgroup.devinfra.telegram.components.template.util;
 
+import java.util.Optional;
+
 /**
  * Класс для работы с Telegram Markdown.
  *
@@ -42,6 +44,13 @@ public class Markdown {
             s = "_" + s + "_";
         }
         return s;
+    }
+
+    /**
+     * Создает и возвращает именованную ссылку.
+     */
+    public String link(Object name, Object link) {
+        return "[" + Optional.ofNullable(escape(name)).orElse("") + "](" + escape(link) + ")";
     }
 
 }

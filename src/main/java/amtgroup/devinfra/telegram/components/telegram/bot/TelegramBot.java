@@ -38,7 +38,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         Message message = update.getMessage();
         if (message != null) {
             Chat chat = message.getChat();
-            TelegramChatId chatId = new TelegramChatId(chat.getId());
+            TelegramChatId chatId = TelegramChatId.of(chat.getId());
             // бот добавлен в новый чат
             if (message.getNewChatMembers() != null && message.getNewChatMembers().stream().anyMatch(user -> Objects.equals(user.getUserName(), getBotUsername()))) {
                 try {

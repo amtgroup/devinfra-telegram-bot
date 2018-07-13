@@ -10,7 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Map;
 
 /**
  * @author Vitaly Ogoltsov
@@ -32,7 +34,8 @@ public class SendNotificationCommand {
     @Valid
     private EventTypeId eventTypeId;
 
-    @NotNull
-    private JsonNode event;
+    @NotEmpty
+    @Valid
+    private Map<String, Object> variables;
 
 }
