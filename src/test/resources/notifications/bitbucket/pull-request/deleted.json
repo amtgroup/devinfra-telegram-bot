@@ -1,0 +1,100 @@
+{
+  "eventKey": "pr:deleted",
+  "date": "2018-07-10T16:16:58+0000",
+  "actor": {
+    "name": "vogoltsov",
+    "emailAddress": "vogoltsov@example.com",
+    "id": 1,
+    "displayName": "Vitaliy Ogoltsov",
+    "active": true,
+    "slug": "vogoltsov",
+    "type": "NORMAL"
+  },
+  "pullRequest": {
+    "id": 1,
+    "version": 2,
+    "title": "test",
+    "state": "DECLINED",
+    "open": false,
+    "closed": true,
+    "createdDate": 1531239282947,
+    "updatedDate": 1531239418761,
+    "closedDate": 1531239418761,
+    "fromRef": {
+      "id": "refs/heads/test",
+      "displayId": "test",
+      "latestCommit": "c2f62b96eacb2021b6918037a4233416aa8241e6",
+      "repository": {
+        "slug": "amtgroup.devinfra.test",
+        "id": 605,
+        "name": "amtgroup.devinfra.test",
+        "scmId": "git",
+        "state": "AVAILABLE",
+        "statusMessage": "Available",
+        "forkable": true,
+        "project": {
+          "key": "DEVINFRA",
+          "id": 444,
+          "name": "Инфраструктура разработки",
+          "public": false,
+          "type": "NORMAL"
+        },
+        "public": false
+      }
+    },
+    "toRef": {
+      "id": "refs/heads/master",
+      "displayId": "master",
+      "latestCommit": "09abd4387b49df2f5f66525b2678c32b2eed1baf",
+      "repository": {
+        "slug": "amtgroup.devinfra.test",
+        "id": 605,
+        "name": "amtgroup.devinfra.test",
+        "scmId": "git",
+        "state": "AVAILABLE",
+        "statusMessage": "Available",
+        "forkable": true,
+        "project": {
+          "key": "DEVINFRA",
+          "id": 444,
+          "name": "Инфраструктура разработки",
+          "public": false,
+          "type": "NORMAL"
+        },
+        "public": false
+      }
+    },
+    "locked": false,
+    "author": {
+      "user": {
+        "name": "vogoltsov",
+        "emailAddress": "vogoltsov@example.com",
+        "id": 1,
+        "displayName": "Vitaliy Ogoltsov",
+        "active": true,
+        "slug": "vogoltsov",
+        "type": "NORMAL"
+      },
+      "role": "AUTHOR",
+      "approved": false,
+      "status": "UNAPPROVED"
+    },
+    "reviewers": [
+      {
+        "user": {
+          "name": "slukyanets",
+          "emailAddress": "slukyanets@example.com",
+          "id": 16,
+          "displayName": "Sergey Lukyanets",
+          "active": true,
+          "slug": "slukyanets",
+          "type": "NORMAL"
+        },
+        "role": "REVIEWER",
+        "approved": false,
+        "status": "UNAPPROVED"
+      }
+    ],
+    "participants": []
+  }
+}

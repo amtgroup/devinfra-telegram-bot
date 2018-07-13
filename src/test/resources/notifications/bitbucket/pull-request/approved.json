@@ -1,0 +1,117 @@
+{
+  "eventKey": "pr:reviewer:approved",
+  "date": "2018-07-13T14:12:27+0000",
+  "actor": {
+    "name": "vogoltsov",
+    "emailAddress": "vogoltsov@example.com",
+    "id": 1,
+    "displayName": "Vitaliy Ogoltsov",
+    "active": true,
+    "slug": "vogoltsov",
+    "type": "NORMAL"
+  },
+  "pullRequest": {
+    "id": 65,
+    "version": 0,
+    "title": "feat(core): Выполнено переименование полей настроек FTP",
+    "description": "INFODIODE-184",
+    "state": "OPEN",
+    "open": true,
+    "closed": false,
+    "createdDate": 1531472579575,
+    "updatedDate": 1531472579575,
+    "fromRef": {
+      "id": "refs/heads/feature/INFODIODE-184",
+      "displayId": "feature/INFODIODE-184",
+      "latestCommit": "72639f55368595c78adbcdeb3f2ee25af2a3a539",
+      "repository": {
+        "slug": "amtgroup.infodiode.v1",
+        "id": 546,
+        "name": "amtgroup.infodiode.v1",
+        "scmId": "git",
+        "state": "AVAILABLE",
+        "statusMessage": "Available",
+        "forkable": true,
+        "project": {
+          "key": "INFODIODE",
+          "id": 383,
+          "name": "INFODIODE - ПАК однонаправленной передачи данных",
+          "public": false,
+          "type": "NORMAL"
+        },
+        "public": false
+      }
+    },
+    "toRef": {
+      "id": "refs/heads/master",
+      "displayId": "master",
+      "latestCommit": "179a065ca8ffa6e86ecae7bb0a96aa06a20696d3",
+      "repository": {
+        "slug": "amtgroup.infodiode.v1",
+        "id": 546,
+        "name": "amtgroup.infodiode.v1",
+        "scmId": "git",
+        "state": "AVAILABLE",
+        "statusMessage": "Available",
+        "forkable": true,
+        "project": {
+          "key": "INFODIODE",
+          "id": 383,
+          "name": "INFODIODE - ПАК однонаправленной передачи данных",
+          "public": false,
+          "type": "NORMAL"
+        },
+        "public": false
+      }
+    },
+    "locked": false,
+    "author": {
+      "user": {
+        "name": "knaumov",
+        "emailAddress": "knaumov@example.com",
+        "id": 602,
+        "displayName": "Kirill Naumov",
+        "active": true,
+        "slug": "knaumov",
+        "type": "NORMAL"
+      },
+      "role": "AUTHOR",
+      "approved": false,
+      "status": "UNAPPROVED"
+    },
+    "reviewers": [
+      {
+        "user": {
+          "name": "vogoltsov",
+          "emailAddress": "vogoltsov@example.com",
+          "id": 1,
+          "displayName": "Vitaliy Ogoltsov",
+          "active": true,
+          "slug": "vogoltsov",
+          "type": "NORMAL"
+        },
+        "lastReviewedCommit": "72639f55368595c78adbcdeb3f2ee25af2a3a539",
+        "role": "REVIEWER",
+        "approved": true,
+        "status": "APPROVED"
+      }
+    ],
+    "participants": []
+  },
+  "participant": {
+    "user": {
+      "name": "vogoltsov",
+      "emailAddress": "vogoltsov@example.com",
+      "id": 1,
+      "displayName": "Vitaliy Ogoltsov",
+      "active": true,
+      "slug": "vogoltsov",
+      "type": "NORMAL"
+    },
+    "lastReviewedCommit": "72639f55368595c78adbcdeb3f2ee25af2a3a539",
+    "role": "REVIEWER",
+    "approved": true,
+    "status": "APPROVED"
+  },
+  "previousStatus": "UNAPPROVED"
+}

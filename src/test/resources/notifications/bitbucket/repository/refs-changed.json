@@ -1,0 +1,43 @@
+{
+  "eventKey": "repo:refs_changed",
+  "date": "2018-07-13T21:43:06+0000",
+  "actor": {
+    "name": "vogoltsov",
+    "emailAddress": "vogoltsov@example.com",
+    "id": 1,
+    "displayName": "Vitaliy Ogoltsov",
+    "active": true,
+    "slug": "vogoltsov",
+    "type": "NORMAL"
+  },
+  "repository": {
+    "slug": "amtgroup.devinfra.test",
+    "id": 605,
+    "name": "amtgroup.devinfra.test",
+    "scmId": "git",
+    "state": "AVAILABLE",
+    "statusMessage": "Available",
+    "forkable": true,
+    "project": {
+      "key": "DEVINFRA",
+      "id": 444,
+      "name": "Инфраструктура разработки",
+      "public": false,
+      "type": "NORMAL"
+    },
+    "public": false
+  },
+  "changes": [
+    {
+      "ref": {
+        "id": "refs/heads/test",
+        "displayId": "test",
+        "type": "BRANCH"
+      },
+      "refId": "refs/heads/test",
+      "fromHash": "c2f62b96eacb2021b6918037a4233416aa8241e6",
+      "toHash": "42a89e7626fe860d723555ba1c8ea09870fa7295",
+      "type": "UPDATE"
+    }
+  ]
+}

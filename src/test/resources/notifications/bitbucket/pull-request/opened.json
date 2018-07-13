@@ -1,0 +1,84 @@
+{
+  "eventKey": "pr:opened",
+  "date": "2018-07-10T16:14:42+0000",
+  "actor": {
+    "name": "vogoltsov",
+    "emailAddress": "vogoltsov@example.com",
+    "id": 1,
+    "displayName": "Vitaliy Ogoltsov",
+    "active": true,
+    "slug": "vogoltsov",
+    "type": "NORMAL"
+  },
+  "pullRequest": {
+    "id": 1,
+    "version": 0,
+    "title": "test",
+    "state": "OPEN",
+    "open": true,
+    "closed": false,
+    "createdDate": 1531239282947,
+    "updatedDate": 1531239282947,
+    "fromRef": {
+      "id": "refs/heads/test",
+      "displayId": "test",
+      "latestCommit": "c2f62b96eacb2021b6918037a4233416aa8241e6",
+      "repository": {
+        "slug": "amtgroup.devinfra.test",
+        "id": 605,
+        "name": "amtgroup.devinfra.test",
+        "scmId": "git",
+        "state": "AVAILABLE",
+        "statusMessage": "Available",
+        "forkable": true,
+        "project": {
+          "key": "DEVINFRA",
+          "id": 444,
+          "name": "Инфраструктура разработки",
+          "public": false,
+          "type": "NORMAL"
+        },
+        "public": false
+      }
+    },
+    "toRef": {
+      "id": "refs/heads/master",
+      "displayId": "master",
+      "latestCommit": "09abd4387b49df2f5f66525b2678c32b2eed1baf",
+      "repository": {
+        "slug": "amtgroup.devinfra.test",
+        "id": 605,
+        "name": "amtgroup.devinfra.test",
+        "scmId": "git",
+        "state": "AVAILABLE",
+        "statusMessage": "Available",
+        "forkable": true,
+        "project": {
+          "key": "DEVINFRA",
+          "id": 444,
+          "name": "Инфраструктура разработки",
+          "public": false,
+          "type": "NORMAL"
+        },
+        "public": false
+      }
+    },
+    "locked": false,
+    "author": {
+      "user": {
+        "name": "vogoltsov",
+        "emailAddress": "vogoltsov@example.com",
+        "id": 1,
+        "displayName": "Vitaliy Ogoltsov",
+        "active": true,
+        "slug": "vogoltsov",
+        "type": "NORMAL"
+      },
+      "role": "AUTHOR",
+      "approved": false,
+      "status": "UNAPPROVED"
+    },
+    "reviewers": [],
+    "participants": []
+  }
+}

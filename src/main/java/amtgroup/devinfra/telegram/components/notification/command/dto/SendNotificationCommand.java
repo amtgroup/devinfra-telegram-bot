@@ -3,7 +3,6 @@ package amtgroup.devinfra.telegram.components.notification.command.dto;
 import amtgroup.devinfra.telegram.components.notification.model.EventTypeId;
 import amtgroup.devinfra.telegram.components.project.model.ProjectKey;
 import amtgroup.devinfra.telegram.components.project.model.ServiceKey;
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

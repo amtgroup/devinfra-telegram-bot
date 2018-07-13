@@ -1,0 +1,2 @@
+:bookmark: [amtgroup.infodiode.v1 #62: feat(core): Настройки параметров kernel перенесены в manager.sh](https://git.example.com/projects/INFODIODE/repos/amtgroup.infodiode.v1/pull-requests/62/overview?commentId=2810)
+*Vitaliy Ogoltsov* (deleted): Интересно, как оно работало?
