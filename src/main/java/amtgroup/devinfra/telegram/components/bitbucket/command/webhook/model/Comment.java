@@ -18,6 +18,6 @@ public class Comment {
     private String text;
     @NotNull
     @Valid
-    private User user;
+    private User author;
 
 }

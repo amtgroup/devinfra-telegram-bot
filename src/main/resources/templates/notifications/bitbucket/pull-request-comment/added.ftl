@@ -3,4 +3,4 @@
 <#include "../include/pull-request-comment.ftl">
 
 :bookmark: <@pull_request_comment_link/>
-${markdown.bold(event.actor.displayName)}: ${markdown.escape(event.comment.text)}
+${markdown.bold(event.comment.author.displayName)}: ${markdown.escape(event.comment.text)}

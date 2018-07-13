@@ -22,6 +22,7 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
+import org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration;
 import org.springframework.boot.test.context.ConfigFileApplicationContextInitializer;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -135,6 +136,7 @@ public class JiraMessageFormatTest {
     @TestConfiguration
     @Import({
             MessageTemplateConfiguration.class,
+            ValidationAutoConfiguration.class,
             JacksonAutoConfiguration.class
     })
     static class TestContextConfiguration {
