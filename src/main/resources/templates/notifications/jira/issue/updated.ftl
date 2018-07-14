@@ -1,8 +1,10 @@
 <#-- @ftlvariable name="markdown" type="amtgroup.devinfra.telegram.components.template.util.Markdown" -->
 <#-- @ftlvariable name="strings" type="org.apache.commons.lang3.StringUtils" -->
 <#-- @ftlvariable name="event" type="amtgroup.devinfra.telegram.components.jira.command.webhook.JiraIssueWebhookEvent" -->
-<#include "include/issues.ftl">
+<#include "../include/issue.ftl">
 
+<#if !event.issue.fields.issuetype.subtask>
+<#-- ignore subtasks-->
 <#assign status_changed=false>
 <#assign assignee_changed=false>
 <#list event.changelog.items as changelog>
@@ -20,4 +22,6 @@
 ${markdown.bold(strings.capitalize(changelog.field))}: ${markdown.escape(changelog.getFromString())!} :arrow_right: ${markdown.escape(changelog.getToString())!}
 </#list>
 ${markdown.bold('Actor')}: ${markdown.escape(event.user.displayName)}
+</#if>
+<#-- ignore subtasks-->
 </#if>

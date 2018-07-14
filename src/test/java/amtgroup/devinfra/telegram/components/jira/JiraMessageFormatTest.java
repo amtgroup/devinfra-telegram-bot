@@ -74,7 +74,12 @@ public class JiraMessageFormatTest {
 
     @Test
     public void givenStoryCreated_thenOk() throws Exception {
-        validateNotificationMessageSent("issue_created/new-story");
+        validateNotificationMessageSent("issue_created/story");
+    }
+
+    @Test
+    public void givenSubtaskCreated_thenNoMessageIsSent() throws Exception {
+        validateNotificationSkipped("issue_created/subtask");
     }
 
     @Test

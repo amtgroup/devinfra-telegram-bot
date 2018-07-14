@@ -45,7 +45,7 @@ public class JiraNotificationCommandService {
                         .map(JiraIssueWebhookEvent.IssueFields::getProject)
                         .map(JiraIssueWebhookEvent.Project::getKey)
                         .orElse(null),
-                EventTypeId.of("issue_created"),
+                EventTypeId.of("issue/created"),
                 Collections.singletonMap("event", command.getEvent())
         ));
     }
@@ -59,7 +59,7 @@ public class JiraNotificationCommandService {
                         .map(JiraIssueWebhookEvent.IssueFields::getProject)
                         .map(JiraIssueWebhookEvent.Project::getKey)
                         .orElse(null),
-                EventTypeId.of("issue_updated"),
+                EventTypeId.of("issue/updated"),
                 Collections.singletonMap("event", command.getEvent())
         ));
     }
