@@ -2,4 +2,5 @@
 <#-- @ftlvariable name="event" type="amtgroup.devinfra.telegram.components.bitbucket.command.webhook.BitbucketPullRequestWebhookEvent" -->
 <#include "../include/pull-request.ftl">
 
-:wave: ${markdown.bold(event.actor.displayName)} un-approved <@pull_request_link/>
+:wave: <@pull_request_link/>
+${markdown.bold(event.actor.displayName)}: cleared approval status

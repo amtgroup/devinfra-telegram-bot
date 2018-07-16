@@ -1,1 +1,2 @@
-:white_check_mark: *Vitaliy Ogoltsov* merged [amtgroup.devinfra.test #1: test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test/pull-requests/1/overview)
+:white_check_mark: [amtgroup.devinfra.test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test): [PR #1: test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test/pull-requests/1/overview)
+*Vitaliy Ogoltsov*: merged

@@ -1,1 +1,2 @@
-:recycle: *Vitaliy Ogoltsov* deleted [amtgroup.devinfra.test #1: test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test/pull-requests/1/overview)
+:recycle: [amtgroup.devinfra.test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test): [PR #1: test](https://git.example.com/projects/DEVINFRA/repos/amtgroup.devinfra.test/pull-requests/1/overview)
+*Vitaliy Ogoltsov*: deleted

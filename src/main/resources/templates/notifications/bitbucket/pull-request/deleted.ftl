@@ -2,4 +2,5 @@
 <#-- @ftlvariable name="event" type="amtgroup.devinfra.telegram.components.bitbucket.command.webhook.BitbucketPullRequestWebhookEvent" -->
 <#include "../include/pull-request.ftl">
 
-:recycle: ${markdown.bold(event.actor.displayName)} deleted <@pull_request_link/>
+:recycle: <@pull_request_link/>
+${markdown.bold(event.actor.displayName)}: deleted
