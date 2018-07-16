@@ -2,4 +2,4 @@
 <#-- @ftlvariable name="event" type="amtgroup.devinfra.telegram.components.bitbucket.command.webhook.BitbucketPullRequestWebhookEvent" -->
 <#include "../include/pull-request.ftl">
 
-:thumbdown: ${markdown.bold(event.actor.displayName)} marked as needs work <@pull_request_link/>
+:-1: ${markdown.bold(event.actor.displayName)} marked as needs work <@pull_request_link/>
