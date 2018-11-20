@@ -18,6 +18,31 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <licenses>
+        <license>
+            <name>Apache License, version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>AMT GROUP</name>
+        <url>http://www.amt.ru/</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Vitaly Ogoltsov</name>
+            <url>https://github.com/vogoltsov</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/amtgroup/devinfra-telegram-bot</url>
+        <connection>scm:git:git://github.com/amtgroup/devinfra-telegram-bot.git</connection>
+        <developerConnection>scm:git:git://github.com/amtgroup/devinfra-telegram-bot.git</developerConnection>
+    </scm>
+
     <repositories>
         <repository>
             <id>spring-milestones</id>
