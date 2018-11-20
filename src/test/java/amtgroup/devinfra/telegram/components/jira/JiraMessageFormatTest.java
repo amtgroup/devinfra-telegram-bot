@@ -110,7 +110,7 @@ public class JiraMessageFormatTest {
         ));
         verify(telegramCommandService).sendMessage(any(SendTelegramMessageCommand.class));
         Assert.assertEquals(
-                getResourceAsString("notifications/jira/" + testCase + ".txt"),
+                getResourceAsString("notifications/jira/" + testCase + ".txt").trim(),
                 sendTelegramMessageCommandArgumentCaptor.getValue().getMessage()
         );
     }

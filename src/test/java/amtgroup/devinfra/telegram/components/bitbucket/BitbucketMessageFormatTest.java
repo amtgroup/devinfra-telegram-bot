@@ -140,7 +140,7 @@ public class BitbucketMessageFormatTest {
         ));
         verify(telegramCommandService).sendMessage(any(SendTelegramMessageCommand.class));
         Assert.assertEquals(
-                getResourceAsString("notifications/bitbucket/" + testCase + ".txt"),
+                getResourceAsString("notifications/bitbucket/" + testCase + ".txt").trim(),
                 sendTelegramMessageCommandArgumentCaptor.getValue().getMessage()
         );
     }
