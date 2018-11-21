@@ -1,4 +1,5 @@
 <#-- @ftlvariable name="markdown" type="amtgroup.devinfra.telegram.components.template.util.Markdown" -->
+<#-- @ftlvariable name="jira" type="amtgroup.devinfra.telegram.components.jira.config.JiraConfigurationProperties" -->
 <#-- @ftlvariable name="event" type="amtgroup.devinfra.telegram.components.jira.command.webhook.JiraIssueWebhookEvent" -->
 <#macro issue_type_icon>
     <#switch event.issue.fields.issuetype.name>
@@ -6,4 +7,4 @@
         <#default>:stars:<#break>
     </#switch>
 </#macro>
-<#macro issue_url>${markdown.link(event.issue.key + ': ' + event.issue.fields.summary, 'https://jira.example.com/browse/' + event.issue.key)}</#macro>
+<#macro issue_url>${markdown.link(event.issue.key + ': ' + event.issue.fields.summary, jira.url + '/browse/' + event.issue.key)}</#macro>

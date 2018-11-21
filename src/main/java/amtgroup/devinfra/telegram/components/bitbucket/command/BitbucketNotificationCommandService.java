@@ -11,16 +11,21 @@ import amtgroup.devinfra.telegram.components.bitbucket.command.dto.NotifyPullReq
 import amtgroup.devinfra.telegram.components.bitbucket.command.dto.NotifyPullRequestOpenedEventCommand;
 import amtgroup.devinfra.telegram.components.bitbucket.command.dto.NotifyPullRequestUnapprovedEventCommand;
 import amtgroup.devinfra.telegram.components.bitbucket.command.dto.NotifyRepositoryRefsChangedCommand;
+import amtgroup.devinfra.telegram.components.bitbucket.command.webhook.BitbucketWebhookEvent;
+import amtgroup.devinfra.telegram.components.bitbucket.config.BitBucketConfigurationProperties;
 import amtgroup.devinfra.telegram.components.notification.command.NotificationCommandService;
 import amtgroup.devinfra.telegram.components.notification.command.dto.SendNotificationCommand;
 import amtgroup.devinfra.telegram.components.notification.model.EventTypeId;
 import amtgroup.devinfra.telegram.components.project.model.ServiceKey;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Vitaly Ogoltsov
@@ -28,17 +33,15 @@ import java.util.Collections;
 @Service
 @Validated
 @Slf4j
+@RequiredArgsConstructor
 public class BitbucketNotificationCommandService {
 
     private final ServiceKey serviceKey = ServiceKey.of("bitbucket");
 
+    private final BitBucketConfigurationProperties bitBucketConfigurationProperties;
+
     private final NotificationCommandService notificationCommandService;
 
-
-    @Autowired
-    public BitbucketNotificationCommandService(NotificationCommandService notificationCommandService) {
-        this.notificationCommandService = notificationCommandService;
-    }
 
 
     public void handle(NotifyRepositoryRefsChangedCommand command) {
@@ -46,7 +49,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getRepository().getProject().getKey(),
                 EventTypeId.of("repository/refs-changed"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -55,7 +58,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request/opened"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -64,7 +67,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request/merged"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -73,7 +76,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request/declined"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -82,7 +85,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request/deleted"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -91,7 +94,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request/approved"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -100,7 +103,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request/unapproved"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -109,7 +112,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request/needs-work"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -118,7 +121,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request-comment/added"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -127,7 +130,7 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request-comment/edited"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
     }
 
@@ -136,8 +139,16 @@ public class BitbucketNotificationCommandService {
                 serviceKey,
                 command.getEvent().getPullRequest().getToRef().getRepository().getProject().getKey(),
                 EventTypeId.of("pull-request-comment/deleted"),
-                Collections.singletonMap("event", command.getEvent())
+                variables(command.getEvent())
         ));
+    }
+    
+    
+    private Map<String, Object> variables(BitbucketWebhookEvent event) {
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("bitbucket", bitBucketConfigurationProperties);
+        variables.put("event", event);
+        return variables;
     }
 
 }

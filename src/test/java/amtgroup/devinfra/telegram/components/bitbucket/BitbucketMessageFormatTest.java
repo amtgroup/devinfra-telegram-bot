@@ -3,6 +3,8 @@ package amtgroup.devinfra.telegram.components.bitbucket;
 import amtgroup.devinfra.telegram.components.bitbucket.command.BitbucketNotificationCommandService;
 import amtgroup.devinfra.telegram.components.bitbucket.command.BitbucketWebhookCommandService;
 import amtgroup.devinfra.telegram.components.bitbucket.command.dto.HandleBitbucketWebhookEventCommand;
+import amtgroup.devinfra.telegram.components.bitbucket.config.BitBucketConfiguration;
+import amtgroup.devinfra.telegram.components.bitbucket.config.BitBucketConfigurationProperties;
 import amtgroup.devinfra.telegram.components.notification.command.NotificationCommandService;
 import amtgroup.devinfra.telegram.components.project.query.ProjectCatalogQueryService;
 import amtgroup.devinfra.telegram.components.project.query.dto.FindTelegramChatIdByProjectKeyQuery;
@@ -170,6 +172,7 @@ public class BitbucketMessageFormatTest {
 
     @TestConfiguration
     @Import({
+            BitBucketConfiguration.class,
             MessageTemplateConfiguration.class,
             ValidationAutoConfiguration.class,
             JacksonAutoConfiguration.class
@@ -189,13 +192,15 @@ public class BitbucketMessageFormatTest {
         }
 
         @Bean
-        public BitbucketNotificationCommandService bitbucketNotificationCommandService(NotificationCommandService notificationCommandService) {
-            return new BitbucketNotificationCommandService(notificationCommandService);
+        public BitbucketNotificationCommandService bitbucketNotificationCommandService(BitBucketConfigurationProperties bitBucketConfigurationProperties,
+                                                                                       NotificationCommandService notificationCommandService) {
+
+            return new BitbucketNotificationCommandService(bitBucketConfigurationProperties, notificationCommandService);
         }
 
         @Bean
         public BitbucketWebhookCommandService bitbucketWebhookCommandService(ObjectMapper objectMapper,
-                                                                   BitbucketNotificationCommandService bitbucketNotificationCommandService) {
+                                                                             BitbucketNotificationCommandService bitbucketNotificationCommandService) {
 
             return new BitbucketWebhookCommandService(objectMapper, bitbucketNotificationCommandService);
         }

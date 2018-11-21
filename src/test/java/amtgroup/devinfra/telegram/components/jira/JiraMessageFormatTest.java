@@ -3,6 +3,8 @@ package amtgroup.devinfra.telegram.components.jira;
 import amtgroup.devinfra.telegram.components.jira.command.JiraNotificationCommandService;
 import amtgroup.devinfra.telegram.components.jira.command.JiraWebhookCommandService;
 import amtgroup.devinfra.telegram.components.jira.command.dto.HandleJiraWebhookEventCommand;
+import amtgroup.devinfra.telegram.components.jira.config.JiraConfiguration;
+import amtgroup.devinfra.telegram.components.jira.config.JiraConfigurationProperties;
 import amtgroup.devinfra.telegram.components.notification.command.NotificationCommandService;
 import amtgroup.devinfra.telegram.components.project.query.ProjectCatalogQueryService;
 import amtgroup.devinfra.telegram.components.project.query.dto.FindTelegramChatIdByProjectKeyQuery;
@@ -14,6 +16,7 @@ import amtgroup.devinfra.telegram.components.template.config.MessageTemplateConf
 import amtgroup.devinfra.telegram.components.template.query.MessageTemplateQueryService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -140,10 +143,12 @@ public class JiraMessageFormatTest {
 
     @TestConfiguration
     @Import({
+            JiraConfiguration.class,
             MessageTemplateConfiguration.class,
             ValidationAutoConfiguration.class,
             JacksonAutoConfiguration.class
     })
+    @RequiredArgsConstructor
     static class TestContextConfiguration {
 
         @Bean
@@ -159,8 +164,10 @@ public class JiraMessageFormatTest {
         }
 
         @Bean
-        public JiraNotificationCommandService jiraNotificationCommandService(NotificationCommandService notificationCommandService) {
-            return new JiraNotificationCommandService(notificationCommandService);
+        public JiraNotificationCommandService jiraNotificationCommandService(JiraConfigurationProperties jiraConfigurationProperties,
+                                                                             NotificationCommandService notificationCommandService) {
+
+            return new JiraNotificationCommandService(jiraConfigurationProperties, notificationCommandService);
         }
 
         @Bean

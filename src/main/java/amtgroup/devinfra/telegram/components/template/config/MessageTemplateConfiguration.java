@@ -2,6 +2,7 @@ package amtgroup.devinfra.telegram.components.template.config;
 
 import amtgroup.devinfra.telegram.components.template.query.MessageTemplateQueryService;
 import amtgroup.devinfra.telegram.components.template.util.Markdown;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -20,6 +21,7 @@ import java.util.Map;
  */
 @Configuration
 @ImportAutoConfiguration(FreeMarkerAutoConfiguration.class)
+@RequiredArgsConstructor
 public class MessageTemplateConfiguration {
 
     @Bean
