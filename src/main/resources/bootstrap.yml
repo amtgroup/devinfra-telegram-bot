@@ -5,3 +5,8 @@ spring:
     config:
       enabled: false
       fail-fast: true
+
+logging:
+  level:
+    root: info
+  appenders: 'CONSOLE'

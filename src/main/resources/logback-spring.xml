@@ -6,27 +6,49 @@
 
     <springProperty scope="context" name="application" source="spring.application.name"/>
 
-    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>${LOGSTASH_DESTINATION:-logstash:4560}</destination>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <includeContext>false</includeContext>
-            <customFields>
-                {
-                "hostname": "${HOSTNAME}",
-                "application": "${application}"
-                }
-            </customFields>
-            <fieldNames>
-                <message>log_message</message>
-            </fieldNames>
-        </encoder>
-        <keepAliveDuration>5 minutes</keepAliveDuration>
-    </appender>
+    <springProperty scope="context" name="appenders" source="logging.appenders"/>
 
 
-    <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="LOGSTASH"/>
+    <if condition='isDefined("appenders") &amp;&amp; property("appenders").contains("LOGSTASH")'>
+        <then>
+            <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+                <destination>${LOGSTASH_DESTINATION:-logstash:4560}</destination>
+                <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                    <includeContext>false</includeContext>
+                    <customFields>
+                        {
+                        "hostname": "${HOSTNAME}",
+                        "application": "${application}"
+                        }
+                    </customFields>
+                    <fieldNames>
+                        <message>log_message</message>
+                    </fieldNames>
+                </encoder>
+                <keepAliveDuration>5 minutes</keepAliveDuration>
+            </appender>
+        </then>
+    </if>
+
+
+    <root>
+        <if condition='isDefined("appenders")'>
+            <then>
+                <if condition='property("appenders").contains("CONSOLE")'>
+                    <then>
+                        <appender-ref ref="CONSOLE"/>
+                    </then>
+                </if>
+                <if condition='property("appenders").contains("LOGSTASH")'>
+                    <then>
+                        <appender-ref ref="LOGSTASH"/>
+                    </then>
+                </if>
+            </then>
+            <else>
+                <appender-ref ref="CONSOLE"/>
+            </else>
+        </if>
     </root>
 
 </configuration>
