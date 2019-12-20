@@ -28,11 +28,11 @@ public abstract class ApplicationException extends RuntimeException {
         this(null, args, throwable);
     }
 
-    public ApplicationException(String code, Object[] args) {
+    private ApplicationException(String code, Object[] args) {
         this(code, args, null);
     }
 
-    public ApplicationException(String code, Object[] args, Throwable cause) {
+    private ApplicationException(String code, Object[] args, Throwable cause) {
         super(null, cause);
         this.code = code != null ? code : getClass().getSimpleName();
         this.args = args;

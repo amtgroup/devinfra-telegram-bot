@@ -1,5 +1,6 @@
 package amtgroup.devinfra.telegram.components.project.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
@@ -17,6 +18,7 @@ import java.util.Objects;
 @EqualsAndHashCode
 public final class ProjectKey implements Serializable {
 
+    @JsonCreator
     public static ProjectKey of(String value) {
         return new ProjectKey(value);
     }
