@@ -50,7 +50,6 @@ public class Markdown {
      * Создает и возвращает именованную ссылку.
      */
     public String link(Object name, Object link) {
-        return "[" + Optional.ofNullable(escape(name)).orElse("") + "](" + escape(link) + ")";
+        return "[" + Optional.ofNullable(escape(name)).orElse("") + "](" + link + ")";
     }
-
 }

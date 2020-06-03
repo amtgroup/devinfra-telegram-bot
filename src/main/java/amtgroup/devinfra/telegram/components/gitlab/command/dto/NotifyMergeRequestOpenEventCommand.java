@@ -1,6 +1,7 @@
 package amtgroup.devinfra.telegram.components.gitlab.command.dto;
 
 import amtgroup.devinfra.telegram.components.gitlab.command.webhook.GitlabMergeRequestWebhookEvent;
+import amtgroup.devinfra.telegram.components.project.model.ProjectKey;
 import lombok.Value;
 
 import javax.validation.Valid;
@@ -11,6 +12,8 @@ import javax.validation.constraints.NotNull;
  */
 @Value
 public class NotifyMergeRequestOpenEventCommand {
+
+    ProjectKey projectKey;
 
     @NotNull
     @Valid

@@ -40,7 +40,7 @@ public class GitlabNotificationCommandService {
     public void handle(NotifyMergeRequestOpenEventCommand command) {
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
-                command.getEvent().getProject().getKey(),
+                command.getProjectKey(),
                 EventTypeId.of("merge-request/open"),
                 variables(command.getEvent())
         ));
@@ -49,7 +49,7 @@ public class GitlabNotificationCommandService {
     public void handle(NotifyMergeRequestCloseEventCommand command) {
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
-                command.getEvent().getProject().getKey(),
+                command.getProjectKey(),
                 EventTypeId.of("merge-request/close"),
                 variables(command.getEvent())
         ));
@@ -58,7 +58,7 @@ public class GitlabNotificationCommandService {
     public void handle(NotifyMergeRequestReopenEventCommand command) {
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
-                command.getEvent().getProject().getKey(),
+                command.getProjectKey(),
                 EventTypeId.of("merge-request/reopen"),
                 variables(command.getEvent())
         ));
@@ -67,7 +67,7 @@ public class GitlabNotificationCommandService {
     public void handle(NotifyMergeRequestMergeEventCommand command) {
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
-                command.getEvent().getProject().getKey(),
+                command.getProjectKey(),
                 EventTypeId.of("merge-request/merge"),
                 variables(command.getEvent())
         ));
@@ -76,7 +76,7 @@ public class GitlabNotificationCommandService {
     public void handle(NotifyMergeRequestCommentEventCommand command) {
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
-                command.getEvent().getProject().getKey(),
+                command.getProjectKey(),
                 EventTypeId.of("merge-request/comment"),
                 variables(command.getEvent())
         ));
@@ -85,7 +85,7 @@ public class GitlabNotificationCommandService {
     public void handle(NotifyCommitCommentEventCommand command) {
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
-                command.getEvent().getProject().getKey(),
+                command.getProjectKey(),
                 EventTypeId.of("commit/comment"),
                 variables(command.getEvent())
         ));
@@ -94,7 +94,7 @@ public class GitlabNotificationCommandService {
     public void handle(NotifyIssueCommentEventCommand command) {
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
-                command.getEvent().getProject().getKey(),
+                command.getProjectKey(),
                 EventTypeId.of("issue/comment"),
                 variables(command.getEvent())
         ));
@@ -103,7 +103,7 @@ public class GitlabNotificationCommandService {
     public void handle(NotifySnippetCommentEventCommand command) {
         notificationCommandService.handle(new SendNotificationCommand(
                 serviceKey,
-                command.getEvent().getProject().getKey(),
+                command.getProjectKey(),
                 EventTypeId.of("snippet/comment"),
                 variables(command.getEvent())
         ));
