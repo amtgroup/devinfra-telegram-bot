@@ -6,6 +6,7 @@ import amtgroup.devinfra.telegram.components.gitlab.command.dto.HandleGitlabWebh
 import amtgroup.devinfra.telegram.components.gitlab.config.GitlabConfiguration;
 import amtgroup.devinfra.telegram.components.gitlab.config.GitlabConfigurationProperties;
 import amtgroup.devinfra.telegram.components.notification.command.NotificationCommandService;
+import amtgroup.devinfra.telegram.components.project.model.ProjectKey;
 import amtgroup.devinfra.telegram.components.project.query.ProjectCatalogQueryService;
 import amtgroup.devinfra.telegram.components.project.query.dto.FindTelegramChatIdByProjectKeyQuery;
 import amtgroup.devinfra.telegram.components.project.query.dto.FindTelegramChatIdByProjectKeyQueryResult;
@@ -85,6 +86,7 @@ public class GitlabMessageFormatTest {
         ArgumentCaptor<SendTelegramMessageCommand> sendTelegramMessageCommandArgumentCaptor = ArgumentCaptor.forClass(SendTelegramMessageCommand.class);
         doNothing().when(telegramCommandService).sendMessage(sendTelegramMessageCommandArgumentCaptor.capture());
         gitlabWebhookCommandService.handle(new HandleGitlabWebhookEventCommand(
+                ProjectKey.of("1"),
                 objectMapper.readValue(
                         getResourceAsString("notifications/gitlab/" + testCase + ".json"),
                         JsonNode.class
@@ -101,6 +103,7 @@ public class GitlabMessageFormatTest {
     private void validateNotificationSkipped(String testCase) throws Exception {
         doNothing().when(telegramCommandService).sendMessage(isA(SendTelegramMessageCommand.class));
         gitlabWebhookCommandService.handle(new HandleGitlabWebhookEventCommand(
+                ProjectKey.of("1"),
                 objectMapper.readValue(
                         getResourceAsString("notifications/gitlab/" + testCase + ".json"),
                         JsonNode.class

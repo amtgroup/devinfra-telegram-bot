@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @Data
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Project {
-    public static final String GITLAB_PROJECT_KEY_PREFIX = "GITLAB_";
 
     @NotNull
     private String id;
@@ -29,9 +28,5 @@ public class Project {
     private String url;
 
     private String namespace;
-
-    public ProjectKey getKey() {
-        return ProjectKey.of(GITLAB_PROJECT_KEY_PREFIX + id);
-    }
 
 }

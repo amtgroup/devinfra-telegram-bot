@@ -57,21 +57,25 @@ public class GitlabWebhookCommandService {
                 switch (action) {
                     case "open":
                         gitlabNotificationCommandService.handle(new NotifyMergeRequestOpenEventCommand(
+                                command.getProjectKey(),
                                 objectMapper.convertValue(command.getEvent(), GitlabMergeRequestWebhookEvent.class)
                         ));
                         break;
                     case "close":
                         gitlabNotificationCommandService.handle(new NotifyMergeRequestCloseEventCommand(
+                                command.getProjectKey(),
                                 objectMapper.convertValue(command.getEvent(), GitlabMergeRequestWebhookEvent.class)
                         ));
                         break;
                     case "reopen":
                         gitlabNotificationCommandService.handle(new NotifyMergeRequestReopenEventCommand(
+                                command.getProjectKey(),
                                 objectMapper.convertValue(command.getEvent(), GitlabMergeRequestWebhookEvent.class)
                         ));
                         break;
                     case "merge":
                         gitlabNotificationCommandService.handle(new NotifyMergeRequestMergeEventCommand(
+                                command.getProjectKey(),
                                 objectMapper.convertValue(command.getEvent(), GitlabMergeRequestWebhookEvent.class)
                         ));
                         break;
@@ -88,21 +92,25 @@ public class GitlabWebhookCommandService {
                 switch (target) {
                     case "MergeRequest":
                         gitlabNotificationCommandService.handle(new NotifyMergeRequestCommentEventCommand(
+                                command.getProjectKey(),
                                 objectMapper.convertValue(command.getEvent(), GitlabMergeRequestCommentWebhookEvent.class)
                         ));
                         break;
                     case "Commit":
                         gitlabNotificationCommandService.handle(new NotifyCommitCommentEventCommand(
+                                command.getProjectKey(),
                                 objectMapper.convertValue(command.getEvent(), GitlabCommitCommentWebhookEvent.class)
                         ));
                         break;
                     case "Issue":
                         gitlabNotificationCommandService.handle(new NotifyIssueCommentEventCommand(
+                                command.getProjectKey(),
                                 objectMapper.convertValue(command.getEvent(), GitlabIssueCommentWebhookEvent.class)
                         ));
                         break;
                     case "Snippet":
                         gitlabNotificationCommandService.handle(new NotifySnippetCommentEventCommand(
+                                command.getProjectKey(),
                                 objectMapper.convertValue(command.getEvent(), GitlabSnippetCommentWebhookEvent.class)
                         ));
                         break;
