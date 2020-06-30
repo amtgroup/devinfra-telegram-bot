@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+import static amtgroup.devinfra.telegram.Utils.lsFormat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.BDDMockito.given;
@@ -143,7 +144,7 @@ public class BitbucketMessageFormatTest {
         verify(telegramCommandService).sendMessage(any(SendTelegramMessageCommand.class));
         Assert.assertEquals(
                 getResourceAsString("notifications/bitbucket/" + testCase + ".txt").trim(),
-                sendTelegramMessageCommandArgumentCaptor.getValue().getMessage()
+                lsFormat(sendTelegramMessageCommandArgumentCaptor.getValue().getMessage())
         );
     }
 
