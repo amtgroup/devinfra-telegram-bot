@@ -8,11 +8,15 @@ import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyMergeReque
 import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyMergeRequestMergeEventCommand;
 import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyMergeRequestOpenEventCommand;
 import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyMergeRequestReopenEventCommand;
+import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyPipelineFailedEventCommand;
+import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyPipelineManualEventCommand;
+import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyPipelineSuccessEventCommand;
 import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifySnippetCommentEventCommand;
 import amtgroup.devinfra.telegram.components.gitlab.command.webhook.GitlabCommitCommentWebhookEvent;
 import amtgroup.devinfra.telegram.components.gitlab.command.webhook.GitlabIssueCommentWebhookEvent;
 import amtgroup.devinfra.telegram.components.gitlab.command.webhook.GitlabMergeRequestCommentWebhookEvent;
 import amtgroup.devinfra.telegram.components.gitlab.command.webhook.GitlabMergeRequestWebhookEvent;
+import amtgroup.devinfra.telegram.components.gitlab.command.webhook.GitlabPipelineWebhookEvent;
 import amtgroup.devinfra.telegram.components.gitlab.command.webhook.GitlabSnippetCommentWebhookEvent;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -116,6 +120,34 @@ public class GitlabWebhookCommandService {
                         break;
                     default:
                         log.debug("Webhook event skipped: {}.{}", webhookEvent, target);
+                        break;
+                }
+                break;
+            case "pipeline":
+                String status = Optional.ofNullable(command.getEvent()
+                        .path("object_attributes").path("status").textValue())
+                        .orElseThrow(() -> new RuntimeException("Не установлен status"));
+                switch (status) {
+                    case "success":
+                        gitlabNotificationCommandService.handle(new NotifyPipelineSuccessEventCommand(
+                                command.getProjectKey(),
+                                objectMapper.convertValue(command.getEvent(), GitlabPipelineWebhookEvent.class)
+                        ));
+                        break;
+                    case "failed":
+                        gitlabNotificationCommandService.handle(new NotifyPipelineFailedEventCommand(
+                                command.getProjectKey(),
+                                objectMapper.convertValue(command.getEvent(), GitlabPipelineWebhookEvent.class)
+                        ));
+                        break;
+                    case "manual":
+                        gitlabNotificationCommandService.handle(new NotifyPipelineManualEventCommand(
+                                command.getProjectKey(),
+                                objectMapper.convertValue(command.getEvent(), GitlabPipelineWebhookEvent.class)
+                        ));
+                        break;
+                    default:
+                        log.debug("Webhook event skipped: {}.{}", webhookEvent, status);
                         break;
                 }
                 break;
