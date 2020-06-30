@@ -39,11 +39,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+import static amtgroup.devinfra.telegram.Utils.lsFormat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -80,6 +80,26 @@ public class GitlabMessageFormatTest {
         validateNotificationMessageSent("merge-request/open");
     }
 
+    @Test
+    public void givenMergeRequestClose_thenNotificationSent() throws Exception {
+        validateNotificationMessageSent("merge-request/close");
+    }
+
+    @Test
+    public void givenMergeRequestReopen_thenNotificationSent() throws Exception {
+        validateNotificationMessageSent("merge-request/reopen");
+    }
+
+    @Test
+    public void givenMergeRequestComment_thenNotificationSent() throws Exception {
+        validateNotificationMessageSent("merge-request/comment");
+    }
+
+    @Test
+    public void givenMergeRequestMerge_thenNotificationSent() throws Exception {
+        validateNotificationMessageSent("merge-request/merge");
+    }
+
 
     @SuppressWarnings("SameParameterValue")
     private void validateNotificationMessageSent(String testCase) throws Exception {
@@ -95,23 +115,9 @@ public class GitlabMessageFormatTest {
         verify(telegramCommandService).sendMessage(any(SendTelegramMessageCommand.class));
         Assert.assertEquals(
                 getResourceAsString("notifications/gitlab/" + testCase + ".txt").trim(),
-                sendTelegramMessageCommandArgumentCaptor.getValue().getMessage().replaceAll("\\n|\\r\\n", System.getProperty("line.separator"))
+                lsFormat(sendTelegramMessageCommandArgumentCaptor.getValue().getMessage())
         );
     }
-
-    @SuppressWarnings("SameParameterValue")
-    private void validateNotificationSkipped(String testCase) throws Exception {
-        doNothing().when(telegramCommandService).sendMessage(isA(SendTelegramMessageCommand.class));
-        gitlabWebhookCommandService.handle(new HandleGitlabWebhookEventCommand(
-                ProjectKey.of("1"),
-                objectMapper.readValue(
-                        getResourceAsString("notifications/gitlab/" + testCase + ".json"),
-                        JsonNode.class
-                )
-        ));
-        verify(telegramCommandService, never()).sendMessage(any(SendTelegramMessageCommand.class));
-    }
-
 
     /**
      * Читает и возвращает содержимое файла ресурсов как строку.
