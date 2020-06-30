@@ -100,6 +100,21 @@ public class GitlabMessageFormatTest {
         validateNotificationMessageSent("merge-request/merge");
     }
 
+    @Test
+    public void givenPipelineSuccess_thenNotificationSent() throws Exception {
+        validateNotificationMessageSent("pipeline/success");
+    }
+
+    @Test
+    public void givenPipelineFailed_thenNotificationSent() throws Exception {
+        validateNotificationMessageSent("pipeline/failed");
+    }
+
+    @Test
+    public void givenPipelineManual_thenNotificationSent() throws Exception {
+        validateNotificationMessageSent("pipeline/manual");
+    }
+
 
     @SuppressWarnings("SameParameterValue")
     private void validateNotificationMessageSent(String testCase) throws Exception {

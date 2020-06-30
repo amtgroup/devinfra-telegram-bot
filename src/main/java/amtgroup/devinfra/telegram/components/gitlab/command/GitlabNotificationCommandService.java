@@ -7,6 +7,9 @@ import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyMergeReque
 import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyMergeRequestMergeEventCommand;
 import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyMergeRequestOpenEventCommand;
 import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyMergeRequestReopenEventCommand;
+import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyPipelineFailedEventCommand;
+import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyPipelineManualEventCommand;
+import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifyPipelineSuccessEventCommand;
 import amtgroup.devinfra.telegram.components.gitlab.command.dto.NotifySnippetCommentEventCommand;
 import amtgroup.devinfra.telegram.components.gitlab.command.webhook.GitlabWebhookEvent;
 import amtgroup.devinfra.telegram.components.gitlab.config.GitlabConfigurationProperties;
@@ -105,6 +108,33 @@ public class GitlabNotificationCommandService {
                 serviceKey,
                 command.getProjectKey(),
                 EventTypeId.of("snippet/comment"),
+                variables(command.getEvent())
+        ));
+    }
+
+    public void handle(NotifyPipelineSuccessEventCommand command) {
+        notificationCommandService.handle(new SendNotificationCommand(
+                serviceKey,
+                command.getProjectKey(),
+                EventTypeId.of("pipeline/success"),
+                variables(command.getEvent())
+        ));
+    }
+
+    public void handle(NotifyPipelineFailedEventCommand command) {
+        notificationCommandService.handle(new SendNotificationCommand(
+                serviceKey,
+                command.getProjectKey(),
+                EventTypeId.of("pipeline/failed"),
+                variables(command.getEvent())
+        ));
+    }
+
+    public void handle(NotifyPipelineManualEventCommand command) {
+        notificationCommandService.handle(new SendNotificationCommand(
+                serviceKey,
+                command.getProjectKey(),
+                EventTypeId.of("pipeline/manual"),
                 variables(command.getEvent())
         ));
     }
