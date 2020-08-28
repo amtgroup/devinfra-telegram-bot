@@ -1,2 +1,2 @@
-:warning: [Gitlab Test](http://192.168.64.1:3005/gitlab-org/gitlab-test): [PL #31: master](http://192.168.64.1:3005/gitlab-org/gitlab-test/-/pipelines/31)
+:red_circle: [Gitlab Test](http://192.168.64.1:3005/gitlab-org/gitlab-test): [PL #31: master](http://192.168.64.1:3005/gitlab-org/gitlab-test/-/pipelines/31)
 *Administrator*: failed

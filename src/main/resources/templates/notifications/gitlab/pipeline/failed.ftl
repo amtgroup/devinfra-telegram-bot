@@ -2,5 +2,5 @@
 <#-- @ftlvariable name="event" type="amtgroup.devinfra.telegram.components.gitlab.command.webhook.GitlabPipelineWebhookEvent" -->
 <#include "../include/pipeline.ftl">
 
-:warning: <@pipeline_link/>
+:red_circle: <@pipeline_link/>
 ${markdown.bold(event.user.name)}: failed
