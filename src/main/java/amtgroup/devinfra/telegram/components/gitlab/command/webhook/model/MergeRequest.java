@@ -18,6 +18,8 @@ public class MergeRequest {
     @NotBlank
     private String id;
     @NotBlank
+    private String iid;
+    @NotBlank
     private String title;
     @NotBlank
     private String state;

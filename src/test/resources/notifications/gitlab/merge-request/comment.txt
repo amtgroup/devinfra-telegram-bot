@@ -1,2 +1,2 @@
-:bookmark: [Gitlab Test](http://localhost/gitlab-org/gitlab-test.git): [MR #7: Tempora et eos debitis quae laborum et.](http://example.com/gitlab-org/gitlab-test/merge_requests/1#note_1244)
+:bookmark: [Gitlab Test](http://localhost/gitlab-org/gitlab-test.git): [MR #1: Tempora et eos debitis quae laborum et.](http://example.com/gitlab-org/gitlab-test/merge_requests/1#note_1244)
 *Administrator*: This MR needs work.

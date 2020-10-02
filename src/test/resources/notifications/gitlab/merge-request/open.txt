@@ -1,2 +1,2 @@
-:new: [Gitlab Test](http://example.com/gitlabhq/gitlab-test.git): [MR #99: MS-Viewport](http://example.com/diaspora/merge_requests/1)
+:new: [Gitlab Test](http://example.com/gitlabhq/gitlab-test.git): [MR #1: MS-Viewport](http://example.com/diaspora/merge_requests/1)
 *Administrator*: opened
